@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>C# Cheatsheet - Rick&#39;s Notes</title>
+<meta name="description" content="Dev notes you can use">
+<meta name="generator" content="Hugo 0.111.3">
+<link href="https://rickdgray.github.io/notes/index.xml" rel="alternate" type="application/rss+xml">
+<link rel="canonical" href="https://rickdgray.github.io/notes/dev/csharp/">
+<link rel="stylesheet" href="https://rickdgray.github.io/notes/css/theme.min.css">
+<link rel="stylesheet" href="https://rickdgray.github.io/notes/css/chroma.min.css">
+<script defer src="https://rickdgray.github.io/notes/js/fontawesome6/all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha256-4XodgW4TwIJuDtf+v6vDJ39FVxI0veC/kSCCmnFp7ck=" crossorigin="anonymous"></script>
+<script src="https://rickdgray.github.io/notes/js/bundle.js"></script><style>
+:root {}
+</style>
+<meta property="og:title" content="C# Cheatsheet" />
+<meta property="og:description" content="I&rsquo;m tired of having to look up simple things that I can&rsquo;t immediately remember.
+Configuration Given this example appsettings.json
+{ &#34;Position&#34;: { &#34;Title&#34;: &#34;Editor&#34;, &#34;Name&#34;: &#34;Joe Smith&#34; } } Access in Program/Startup Accessing configuration info in builder
+var test = builder.Configuration[&#34;Position:Title&#34;]; Console.Writeline(test); IOptions Pattern Matching class
+public class PositionOptions { public const string Name = &#34;Position&#34;; public string Title { get; set; } = String.Empty; public string Name { get; set; } = String." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rickdgray.github.io/notes/dev/csharp/" /><meta property="og:image" content="https://rickdgray.github.io/notes/images/og-image.png"/><meta property="article:section" content="Dev" />
+
+<meta property="og:site_name" content="Hugo Techdoc Theme" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://rickdgray.github.io/notes/images/og-image.png"/>
+
+<meta name="twitter:title" content="C# Cheatsheet"/>
+<meta name="twitter:description" content="I&rsquo;m tired of having to look up simple things that I can&rsquo;t immediately remember.
+Configuration Given this example appsettings.json
+{ &#34;Position&#34;: { &#34;Title&#34;: &#34;Editor&#34;, &#34;Name&#34;: &#34;Joe Smith&#34; } } Access in Program/Startup Accessing configuration info in builder
+var test = builder.Configuration[&#34;Position:Title&#34;]; Console.Writeline(test); IOptions Pattern Matching class
+public class PositionOptions { public const string Name = &#34;Position&#34;; public string Title { get; set; } = String.Empty; public string Name { get; set; } = String."/>
+<meta itemprop="name" content="C# Cheatsheet">
+<meta itemprop="description" content="I&rsquo;m tired of having to look up simple things that I can&rsquo;t immediately remember.
+Configuration Given this example appsettings.json
+{ &#34;Position&#34;: { &#34;Title&#34;: &#34;Editor&#34;, &#34;Name&#34;: &#34;Joe Smith&#34; } } Access in Program/Startup Accessing configuration info in builder
+var test = builder.Configuration[&#34;Position:Title&#34;]; Console.Writeline(test); IOptions Pattern Matching class
+public class PositionOptions { public const string Name = &#34;Position&#34;; public string Title { get; set; } = String.Empty; public string Name { get; set; } = String.">
+
+<meta itemprop="wordCount" content="1030"><meta itemprop="image" content="https://rickdgray.github.io/notes/images/og-image.png"/>
+<meta itemprop="keywords" content="" /></head>
+<body><div class="container"><header>
+<h1>Rick&#39;s Notes</h1><span class="version">Version 0.1</span><a href="https://github.com/rickdgray/Obsidian" class="github"><i class="fab fa-github"></i></a>
+<p class="description">Dev notes you can use</p>
+
+</header>
+
+
+<div class="content-container">
+<main><h1>C# Cheatsheet</h1>
+<p>I&rsquo;m tired of having to look up simple things that I can&rsquo;t immediately remember.</p>
+<h1 id="configuration">Configuration</h1>
+<p>Given this example <code>appsettings.json</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&#34;Position&#34;</span>: {
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&#34;Title&#34;</span>: <span style="color:#e6db74">&#34;Editor&#34;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&#34;Name&#34;</span>: <span style="color:#e6db74">&#34;Joe Smith&#34;</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="access-in-programstartup">Access in Program/Startup</h2>
+<p>Accessing configuration info in builder</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> test = builder.Configuration[<span style="color:#e6db74">&#34;Position:Title&#34;</span>];
+</span></span><span style="display:flex;"><span>Console.Writeline(test);
+</span></span></code></pre></div><h2 id="ioptions-pattern">IOptions Pattern</h2>
+<p>Matching class</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PositionOptions</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">string</span> Name = <span style="color:#e6db74">&#34;Position&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> Title { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; } = String.Empty;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> Name { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; } = String.Empty;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>binding in program.cs</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span>builder.Services.Configure&lt;PositionOptions&gt;(
+</span></span><span style="display:flex;"><span>    builder.Configuration.GetSection(PositionOptions.Name));
+</span></span></code></pre></div><p>dependency injection</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> PositionOptions _positionOptions;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> MyController(IOptions&lt;PositionOptions&gt; positionOptions)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	_positionOptions = positionOptions.Value;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="date-and-time">Date and Time</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#75715e">// Declare specific date and time</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> d = <span style="color:#66d9ef">new</span><span style="color:#960050;background-color:#1e0010"> </span>DateTime(<span style="color:#ae81ff">2023</span>,<span style="color:#960050;background-color:#1e0010"> </span><span style="color:#ae81ff">2</span>,<span style="color:#960050;background-color:#1e0010"> </span><span style="color:#ae81ff">8</span>,<span style="color:#960050;background-color:#1e0010"> </span><span style="color:#ae81ff">10</span>,<span style="color:#960050;background-color:#1e0010"> </span><span style="color:#ae81ff">00</span>,<span style="color:#960050;background-color:#1e0010"> </span><span style="color:#ae81ff">00</span>).AddDays(<span style="color:#ae81ff">120</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Date only</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span><span style="color:#960050;background-color:#1e0010"> </span>c<span style="color:#960050;background-color:#1e0010"> </span>=<span style="color:#960050;background-color:#1e0010"> </span><span style="color:#66d9ef">new</span><span style="color:#960050;background-color:#1e0010"> </span>DateOnly(<span style="color:#ae81ff">2023</span>,<span style="color:#960050;background-color:#1e0010"> </span><span style="color:#ae81ff">6</span>,<span style="color:#960050;background-color:#1e0010"> </span><span style="color:#ae81ff">8</span>);
+</span></span><span style="display:flex;"><span>Console.WriteLine(c.AddDays(-<span style="color:#ae81ff">30</span>).ToShortDateString());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Parse from ISO</span>
+</span></span><span style="display:flex;"><span>DateTime.ParseExact(<span style="color:#e6db74">&#34;2023-04-14T15:24:22.3552219-05:00&#34;</span>,<span style="color:#960050;background-color:#1e0010"> </span><span style="color:#e6db74">&#34;o&#34;</span>,<span style="color:#960050;background-color:#1e0010"> </span>CultureInfo.InvariantCulture);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Print ISO</span>
+</span></span><span style="display:flex;"><span>Console.WriteLine(b.ToString(<span style="color:#e6db74">&#34;F&#34;</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Few ways to get string of month; 13th month is blank string. There is no enum.</span>
+</span></span><span style="display:flex;"><span>CultureInfo.CurrentCulture.DateTimeFormat.MonthNames.First();
+</span></span><span style="display:flex;"><span>CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Now.Month);
+</span></span><span style="display:flex;"><span>DateTimeFormatInfo.CurrentInfo.MonthNames.First();
+</span></span><span style="display:flex;"><span>DateTimeFormatInfo.CurrentInfo.GetMonthName(DateTime.Now.Month);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Day of week enum</span>
+</span></span><span style="display:flex;"><span>System.DayOfWeek.Monday
+</span></span></code></pre></div><blockquote>
+<p>[!Leap year bug]
+This will throw an exception when a leap day comes around!
+<code>var nextYear = new DateTime(current.Year + 1, current.Month, current.Day);</code>
+Be sure to instead use the built in method.
+<code>var nextYear = current.AddYears(1);</code></p>
+</blockquote>
+<h1 id="time-zone">Time Zone</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#75715e">// TBD? Probably just use nodatime</span>
+</span></span></code></pre></div><h1 id="file-io">File I/O</h1>
+<h2 id="read-entire-file">Read Entire File</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> path = <span style="color:#e6db74">@&#34;c:\temp\MyTest.txt&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (!File.Exists(path))
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	File.WriteAllLines(path, <span style="color:#e6db74">&#34;new text, &#34;</span>);
+</span></span><span style="display:flex;"><span>	File.AppendAllText(path, <span style="color:#e6db74">&#34;appended text&#34;</span>);
+</span></span><span style="display:flex;"><span>	File.ReadAllLines(path);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="read-by-line">Read by Line</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> workingDirectory = <span style="color:#66d9ef">new</span> DirectoryInfo(Directory.GetCurrentDirectory());
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> path = Path.Combine(
+</span></span><span style="display:flex;"><span>	workingDirectory?.FullName ?? <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> DirectoryNotFoundException(),
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;file.txt&#34;</span>
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> var fileStream = File.OpenRead(path);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> var streamReader = <span style="color:#66d9ef">new</span> StreamReader(fileStream);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> data = <span style="color:#66d9ef">new</span> List&lt;<span style="color:#66d9ef">string</span>&gt;();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">string?</span> line;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> ((line = streamReader.ReadLine()) != <span style="color:#66d9ef">null</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    data.Add(line);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="xml-parsing">XML Parsing</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">using</span> System.Xml;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> System.Xml.Linq;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> var readStream = File.OpenRead(path);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> XmlReader reader = XmlReader.Create(readStream, <span style="color:#66d9ef">new</span> XmlReaderSettings
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	IgnoreComments = <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> (reader.Read())
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">switch</span> (reader.NodeType)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">case</span> XmlNodeType.Element:
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">var</span> data = XElement.Parse(reader.Value);
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">case</span> XmlNodeType.Text:
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">case</span> XmlNodeType.CDATA:
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">default</span>:
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="linq">LINQ</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#75715e">// TBD</span>
+</span></span></code></pre></div><h1 id="string-literal-variants">String Literal Variants</h1>
+<h2 id="composite">Composite</h2>
+<p>This is the old way and should only be used for logging. <a href="https://learn.microsoft.com/en-us/dotnet/standard/base-types/composite-formatting#alignment-component">Alignment</a> of tabular data is also possible.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">string</span>.Format(<span style="color:#e6db74">&#34;The time is {0}&#34;</span>,<span style="color:#960050;background-color:#1e0010"> </span>DateTime.Now)
+</span></span></code></pre></div><h2 id="interpolation">Interpolation</h2>
+<p>The preferred way mostly. <a href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/tokens/interpolated#structure-of-an-interpolated-string">Alignment</a> also possible.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#e6db74">$&#34;The time is {DateTime.Now}&#34;</span>
+</span></span></code></pre></div><h2 id="verbatim">Verbatim</h2>
+<p>For when your string will require many escaped characters. Allows for multiline strings. You still have to escape double quotes, however.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#e6db74">@&#34;c:\documents\files\u0066.txt&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">@&#34;He said, &#34;&#34;This is the last \u0063hance\x0021&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h2 id="verbatim-interpolated">Verbatim Interpolated</h2>
+<p>To interpolate your verbatim string. Can use both <code>@$</code> or <code>$@</code> to indicate.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#e6db74">$@&#34;The time is
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    {DateTime.Now}&#34;</span>
+</span></span></code></pre></div><h2 id="raw">Raw</h2>
+<p>Even easier multiline strings. No escaped characters and includes whitespace and new lines. New lines at the beginning and end are trimmed, however.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"></span>This <span style="color:#66d9ef">is</span> a multi-line
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">string</span> literal with the second line indented.
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span></code></pre></div><h2 id="raw-interpolated">Raw Interpolated</h2>
+<p>To interpolate your raw string. Also allows printing braces with interpolation.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#e6db74">$&#34;&#34;&#34;The point &#34;</span>{X}, {Y}<span style="color:#e6db74">&#34; is {Math.Sqrt(X * X + Y * Y)} from the origin&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">$</span><span style="color:#e6db74">$&#34;&#34;&#34;The point {{{X}}, {{Y}}} is {{Math.Sqrt(X * X + Y * Y)}} from the origin&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h2 id="utf-8">UTF-8</h2>
+<p>.NET strings are UTF-16 by default, but UTF-8 is the standard for web. They are not compile time and cannot be interpolated.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#e6db74">&#34;AUTH &#34;</span>u8
+</span></span></code></pre></div><h1 id="exceptions">Exceptions</h1>
+<p>Never throw caught exceptions!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">try</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Exception();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">catch</span> (Exception e)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">throw</span> e; <span style="color:#75715e">// Don&#39;t do this!!</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Do this instead:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">catch</span> (Exception e)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	_logger.Error(<span style="color:#e6db74">&#34;Error: &#34;</span>, e);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">throw</span>; <span style="color:#75715e">// Note the missing parameter!</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Calling <code>throw;</code> without passing in an exception as an argument acts as a handoff; the original exception simply continues to bubble up the stack. Passing the exception as an argument creates a <strong>new</strong> exception with only some of the data in the original exception.</p>
+<p>Why is this bad?</p>
+<p><strong>Because the newly created exception does not contain the complete call stack. You are losing valuable information!</strong></p>
+<p>Furthermore, if you have nothing add, just don&rsquo;t catch the exception.</p>
+<p><strong>Always throw exceptions as far down the stack as possible.</strong>
+<strong>Always catch exceptions as far up the stack as possible.</strong></p>
+<p>This will provide the most information and context to exactly what went wrong and allow you to handle the exception with the best judgement.</p>
+<h1 id="signatures">Signatures</h1>
+<p>Parameters should be as as generic as possible, and return types should be as specific as possible.
+Don&rsquo;t do this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> IEnumerable&lt;<span style="color:#66d9ef">int</span>&gt; Calculate(List&lt;<span style="color:#66d9ef">int</span>&gt; nums) { ... }
+</span></span></code></pre></div><p>Do this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> List&lt;<span style="color:#66d9ef">int</span>&gt; Calculate(IEnumerable&lt;<span style="color:#66d9ef">int</span>&gt; nums) { ... }
+</span></span></code></pre></div><p>TODO: explain</p>
+<h1 id="access-modifiers">Access Modifiers</h1>
+<p>An <a href="https://learn.microsoft.com/en-us/dotnet/standard/glossary#assembly">assembly</a> is a <em>.dll</em> or <em>.exe</em> created by compiling one or more <em>.cs</em> files in a single compilation. In short, another project.</p>
+<table>
+<thead>
+<tr>
+<th>Caller&rsquo;s location</th>
+<th style="text-align:center"><code>public</code></th>
+<th style="text-align:center"><code>protected internal</code></th>
+<th style="text-align:center"><code>protected</code></th>
+<th style="text-align:center"><code>internal</code></th>
+<th style="text-align:center"><code>private protected</code></th>
+<th style="text-align:center"><code>private</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Within the class</td>
+<td style="text-align:center">✔️️</td>
+<td style="text-align:center">✔️</td>
+<td style="text-align:center">✔️</td>
+<td style="text-align:center">✔️</td>
+<td style="text-align:center">✔️</td>
+<td style="text-align:center">✔️</td>
+</tr>
+<tr>
+<td>Derived class</td>
+<td style="text-align:center">✔️</td>
+<td style="text-align:center">✔️</td>
+<td style="text-align:center">✔️</td>
+<td style="text-align:center">✔️</td>
+<td style="text-align:center">✔️</td>
+<td style="text-align:center">❌</td>
+</tr>
+<tr>
+<td>Non-derived class</td>
+<td style="text-align:center">✔️</td>
+<td style="text-align:center">✔️</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center">✔️</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center">❌</td>
+</tr>
+<tr>
+<td>Derived class, different assembly</td>
+<td style="text-align:center">✔️</td>
+<td style="text-align:center">✔️</td>
+<td style="text-align:center">✔️</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center">❌</td>
+</tr>
+<tr>
+<td>Non-derived class, different assembly</td>
+<td style="text-align:center">✔️</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center">❌</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Classes can only be <code>public</code> or <code>internal</code>.</li>
+<li>Structs don&rsquo;t support inheritance, so they and their members cannot be marked <code>protected</code>.</li>
+<li>Members are not greater in accessibility than their class unless overriding virtual methods in a public base class.</li>
+</ul>
+<h1 id="autoprops">Autoprops</h1>
+<h2 id="mutable">Mutable</h2>
+<p>Old school:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Point</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> _x;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> X
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>	    <span style="color:#66d9ef">get</span> { <span style="color:#66d9ef">return</span> _x; }
+</span></span><span style="display:flex;"><span>	    <span style="color:#66d9ef">set</span> { _x = <span style="color:#66d9ef">value</span>; }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> _y;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> Y
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>	    <span style="color:#66d9ef">get</span> { <span style="color:#66d9ef">return</span> _y; }
+</span></span><span style="display:flex;"><span>	    <span style="color:#66d9ef">set</span> { _y = <span style="color:#66d9ef">value</span>; }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Auto-Implemented Properties:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Point</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> X { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> Y { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="immutable">Immutable</h2>
+<p>Old school:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Point</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> _x;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> X
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>	    <span style="color:#66d9ef">get</span> { <span style="color:#66d9ef">return</span> _x; }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> _y;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> Y
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>	    <span style="color:#66d9ef">get</span> { <span style="color:#66d9ef">return</span> _y; }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Point(<span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>._x = x;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>._y = y;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Auto-Implemented Properties:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Point</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> X { <span style="color:#66d9ef">get</span>; }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> Y { <span style="color:#66d9ef">get</span>; }
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Point(<span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.X = x;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.Y = y;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Init Only Setter:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Point</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> X { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">init</span>; }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> Y { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">init</span>; }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Using the init only setter, we have the option to create immutable objects like this along with the standard constructor option:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> p = <span style="color:#66d9ef">new</span> Point() { X = <span style="color:#ae81ff">42</span>, Y = <span style="color:#ae81ff">13</span> };
+</span></span></code></pre></div><div class="edit-meta">
+
+<br><a href="https://github.com/rickdgray/Obsidian/edit/master/Dev%5cCSharp.md" class="edit-page"><i class="fas fa-pen-square"></i>&nbsp;Edit on GitHub</a></div><nav class="pagination"><a class="nav nav-prev" href="https://rickdgray.github.io/notes/dev/aws/" title="AWS"><i class="fas fa-arrow-left" aria-hidden="true"></i>&nbsp;Prev - AWS</a>
+<a class="nav nav-next" href="https://rickdgray.github.io/notes/dev/csharp-for-newbies/" title="C# For Newbies">Next - C# For Newbies <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+</nav><footer></footer>
+</main>
+<div class="sidebar">
+
+<nav class="open-menu">
+<ul>
+<li class=""><a href="https://rickdgray.github.io/notes">Home</a></li>
+
+<li class="parent"><a href="https://rickdgray.github.io/notes/dev/">Devs</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://rickdgray.github.io/notes/dev/aws/">AWS</a></li>
+<li class="active"><a href="https://rickdgray.github.io/notes/dev/csharp/">C# Cheatsheet</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/csharp-for-newbies/">C# For Newbies</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/choose-a-license/">Choose a License</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/database/">Database</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/git/">Git</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/hard-drive-testing/">HDD Testing</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/interviewing/">Interviewing</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/layoffs/">Layoffs</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/networking/">Networking</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/new-pc/">New PC</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/software-engineering/">Software Engineering</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/ssl-certs/">SSL Certs</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/system-admin/">System Admin</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/terminal/">Terminal</a></li>
+</ul>
+  
+</li>
+</ul>
+</nav>
+
+
+
+<div class="sidebar-footer"></div>
+</div>
+
+</div><a href="#" id="backtothetop-fixed" class="backtothetop"
+ data-backtothetop-duration="600"
+ data-backtothetop-easing="easeOutQuart"
+ data-backtothetop-fixed-fadeIn="1000"
+ data-backtothetop-fixed-fadeOut="1000"
+ data-backtothetop-fixed-bottom="10"
+ data-backtothetop-fixed-right="20">
+<span class="fa-layers fa-fw">
+<i class="fas fa-circle"></i>
+<i class="fas fa-arrow-circle-up"></i>
+</span></a>
+</div>
+</body>
+</html>

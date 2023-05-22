@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Games on Rick&#39;s Notes</title>
+    <link>https://rickdgray.github.io/notes/games/</link>
+    <description>Recent content in Games on Rick&#39;s Notes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://rickdgray.github.io/notes/games/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Advance Wars</title>
+      <link>https://rickdgray.github.io/notes/games/advance-wars/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://rickdgray.github.io/notes/games/advance-wars/</guid>
+      <description>flowchart TD 1[1-3] 4A[4A-5A] 4M[4M-7M] 10F[10] 11F[11] 12[12-14] 15[15-18] 19[19-21] 19A[19-21] 19S[19-21] A[Unlock Grit] B[Unlock Sonja] C[Unlock Drake] D[Unlock Eagle] E[Unlock Kanbei] F[Unlock Nell] G[Unlock Sturm] X[Unlock all COs] Z[Advance Campaign Clear] 1 --&amp;gt;|Andy Branch| 4A 1 --&amp;gt;|Max Branch| 4M 4A --&amp;gt; 6A 6A --&amp;gt;|HQ Cap| 8 6A --&amp;gt;|Rout| 7A 4M --&amp;gt; A 7A --&amp;gt; 8 A --&amp;gt; 8 8 --&amp;gt; 9 9 --&amp;gt; 10 9 --&amp;gt;|Clear in 8 days or less| 10F 10 --&amp;gt; 11 10F --&amp;gt; 11 10F --&amp;gt;|Clear in 10 days or less| 11F 11 --&amp;gt; 15 11F --&amp;gt; 15 11F --&amp;gt;|Clear in 12 days or less| 12 12 --&amp;gt; B B --&amp;gt; 15 15 --&amp;gt;|Only use Andy| 19A 15 --&amp;gt;|Only use Sami| 19S 15 --&amp;gt; 19 19A --&amp;gt; C 19S --&amp;gt; 22 22 --&amp;gt; D 19 &amp;amp; C &amp;amp; D --&amp;gt; E X --&amp;gt; G G &amp;amp; Z --&amp;gt; F style A stroke:#69a2ff,stroke-width:3px style B stroke:#69a2ff,stroke-width:3px style C stroke:#69a2ff,stroke-width:3px style D stroke:#69a2ff,stroke-width:3px style E stroke:#69a2ff,stroke-width:3px style F stroke:#69a2ff,stroke-width:3px style G stroke:#69a2ff,stroke-width:3px style 7A stroke:#ff696e,stroke-width:3px style 12 stroke:#ff696e,stroke-width:3px style 22 stroke:#ff696e,stroke-width:3px </description>
+    </item>
+    
+  </channel>
+</rss>

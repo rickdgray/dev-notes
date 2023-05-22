@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Database - Rick&#39;s Notes</title>
+<meta name="description" content="Dev notes you can use">
+<meta name="generator" content="Hugo 0.111.3">
+<link href="https://rickdgray.github.io/notes/index.xml" rel="alternate" type="application/rss+xml">
+<link rel="canonical" href="https://rickdgray.github.io/notes/dev/database/">
+<link rel="stylesheet" href="https://rickdgray.github.io/notes/css/theme.min.css">
+<link rel="stylesheet" href="https://rickdgray.github.io/notes/css/chroma.min.css">
+<script defer src="https://rickdgray.github.io/notes/js/fontawesome6/all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha256-4XodgW4TwIJuDtf+v6vDJ39FVxI0veC/kSCCmnFp7ck=" crossorigin="anonymous"></script>
+<script src="https://rickdgray.github.io/notes/js/bundle.js"></script><style>
+:root {}
+</style>
+<meta property="og:title" content="Database" />
+<meta property="og:description" content="EF Migrations The migration tool has to be able to build the DbContext to know what&rsquo;s in it.
+dotnet add package Microsoft.EntityFrameworkCore.Design Add a new migration
+param( [Parameter(Mandatory=$true)] [string] $MigrationName ) dotnet ef --startup-project ../App.Api/ migrations add $MigrationName Update database
+param( [string] $TargetMigration ) # TODO print names of last 5 migrations to allow user to input if ([string]::IsNullOrEmpty($TargetMigration)) { dotnet ef --startup-project ../App.Api/ database update } else { dotnet ef --startup-project ." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rickdgray.github.io/notes/dev/database/" /><meta property="og:image" content="https://rickdgray.github.io/notes/images/og-image.png"/><meta property="article:section" content="Dev" />
+
+<meta property="og:site_name" content="Hugo Techdoc Theme" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://rickdgray.github.io/notes/images/og-image.png"/>
+
+<meta name="twitter:title" content="Database"/>
+<meta name="twitter:description" content="EF Migrations The migration tool has to be able to build the DbContext to know what&rsquo;s in it.
+dotnet add package Microsoft.EntityFrameworkCore.Design Add a new migration
+param( [Parameter(Mandatory=$true)] [string] $MigrationName ) dotnet ef --startup-project ../App.Api/ migrations add $MigrationName Update database
+param( [string] $TargetMigration ) # TODO print names of last 5 migrations to allow user to input if ([string]::IsNullOrEmpty($TargetMigration)) { dotnet ef --startup-project ../App.Api/ database update } else { dotnet ef --startup-project ."/>
+<meta itemprop="name" content="Database">
+<meta itemprop="description" content="EF Migrations The migration tool has to be able to build the DbContext to know what&rsquo;s in it.
+dotnet add package Microsoft.EntityFrameworkCore.Design Add a new migration
+param( [Parameter(Mandatory=$true)] [string] $MigrationName ) dotnet ef --startup-project ../App.Api/ migrations add $MigrationName Update database
+param( [string] $TargetMigration ) # TODO print names of last 5 migrations to allow user to input if ([string]::IsNullOrEmpty($TargetMigration)) { dotnet ef --startup-project ../App.Api/ database update } else { dotnet ef --startup-project .">
+
+<meta itemprop="wordCount" content="542"><meta itemprop="image" content="https://rickdgray.github.io/notes/images/og-image.png"/>
+<meta itemprop="keywords" content="" /></head>
+<body><div class="container"><header>
+<h1>Rick&#39;s Notes</h1><span class="version">Version 0.1</span><a href="https://github.com/rickdgray/Obsidian" class="github"><i class="fab fa-github"></i></a>
+<p class="description">Dev notes you can use</p>
+
+</header>
+
+
+<div class="content-container">
+<main><h1>Database</h1>
+<h1 id="ef-migrations">EF Migrations</h1>
+<p>The migration tool has to be able to build the DbContext to know what&rsquo;s in it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dotnet add package Microsoft.EntityFrameworkCore.Design
+</span></span></code></pre></div><p>Add a new migration</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">param</span>(
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">    </span>[Parameter(<span style="color:#a6e22e">Mandatory</span>=$true)]
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">    </span>[<span style="color:#66d9ef">string</span>]<span style="color:#960050;background-color:#1e0010"> </span>$MigrationName
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dotnet<span style="color:#960050;background-color:#1e0010"> </span>ef<span style="color:#960050;background-color:#1e0010"> </span>--startup-project<span style="color:#960050;background-color:#1e0010"> </span>../App.Api/<span style="color:#960050;background-color:#1e0010"> </span>migrations<span style="color:#960050;background-color:#1e0010"> </span>add<span style="color:#960050;background-color:#1e0010"> </span>$MigrationName
+</span></span></code></pre></div><p>Update database</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">param</span>(
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">    </span>[<span style="color:#66d9ef">string</span>]<span style="color:#960050;background-color:#1e0010"> </span>$TargetMigration
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># TODO print names of last 5 migrations to allow user to input</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span><span style="color:#960050;background-color:#1e0010"> </span>([<span style="color:#66d9ef">string</span>]::IsNullOrEmpty($TargetMigration))<span style="color:#960050;background-color:#1e0010"> </span>{
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">    </span>dotnet<span style="color:#960050;background-color:#1e0010"> </span>ef<span style="color:#960050;background-color:#1e0010"> </span>--startup-project<span style="color:#960050;background-color:#1e0010"> </span>../App.Api/<span style="color:#960050;background-color:#1e0010"> </span>database<span style="color:#960050;background-color:#1e0010"> </span>update
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span><span style="color:#960050;background-color:#1e0010"> </span>{
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">    </span>dotnet<span style="color:#960050;background-color:#1e0010"> </span>ef<span style="color:#960050;background-color:#1e0010"> </span>--startup-project<span style="color:#960050;background-color:#1e0010"> </span>../App.Api/<span style="color:#960050;background-color:#1e0010"> </span>database<span style="color:#960050;background-color:#1e0010"> </span>update<span style="color:#960050;background-color:#1e0010"> </span>$TargetMigration
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="db-backup">DB Backup</h1>
+<p>PowerShell script for automating the creation of new databases in a local environment setting.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e">#</span><span style="color:#66d9ef">Requires</span> <span style="color:#66d9ef">-RunAsAdministrator</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># If SqlServer module isn&#39;t installed</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (!(Get-module SqlServer))
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	Write-Host <span style="color:#e6db74">&#34;Installing SqlServer module...&#34;</span>
+</span></span><span style="display:flex;"><span>	Install-Module SqlServer
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Loading SqlServer module...&#34;</span>
+</span></span><span style="display:flex;"><span>Import-Module SqlServer
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$localServer = <span style="color:#e6db74">&#34;(localdb)\MSSQLLocalDB&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Select database to copy:&#34;</span>
+</span></span><span style="display:flex;"><span>$database = Get-SqlDatabase -ServerInstance $localServer | Where-Object { $_.Owner <span style="color:#f92672">-ne</span> <span style="color:#e6db74">&#34;sa&#34;</span> } | Out-GridView -Title <span style="color:#e6db74">&#34;Select database to copy&#34;</span> -PassThru
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ($database <span style="color:#f92672">-eq</span> $null)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	Write-Error <span style="color:#e6db74">&#34;A database was not selected.&#34;</span>
+</span></span><span style="display:flex;"><span>	exit <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$databaseName = $database.Name
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$newDatabaseName  = Read-Host -Prompt <span style="color:#e6db74">&#34;Enter name of new database [</span>${databaseName}<span style="color:#e6db74">_Copy]&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> [<span style="color:#66d9ef">bool</span>]$newDatabaseName) { $newDatabaseName = <span style="color:#e6db74">&#34;</span>${databaseName}<span style="color:#e6db74">_Copy&#34;</span> }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check if name already exists</span>
+</span></span><span style="display:flex;"><span>Get-SqlDatabase -ServerInstance $localServer | ForEach-Object -Process {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> ($_.Name <span style="color:#f92672">-eq</span> $newDatabaseName)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		Write-Error <span style="color:#e6db74">&#34;Database </span>$newDatabaseName<span style="color:#e6db74"> already exists.&#34;</span>
+</span></span><span style="display:flex;"><span>		exit <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Creating </span>$newDatabaseName<span style="color:#e6db74"> on </span>$localServer<span style="color:#e6db74">...&#34;</span>
+</span></span><span style="display:flex;"><span>$server = New-Object Microsoft.SqlServer.Management.Smo.Server($localServer)
+</span></span><span style="display:flex;"><span>$newDatabase = New-Object Microsoft.SqlServer.Management.Smo.Database($server, $newDatabaseName)
+</span></span><span style="display:flex;"><span>$newDatabase.Create()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Backing up </span>$databaseName<span style="color:#e6db74"> to </span>${HOME}<span style="color:#e6db74">\</span>${databaseName}<span style="color:#e6db74">.bak...&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (Test-Path <span style="color:#e6db74">&#34;</span>${HOME}<span style="color:#e6db74">\</span>${databaseName}<span style="color:#e6db74">.bak&#34;</span> -PathType Leaf)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	Rename-Item -Path <span style="color:#e6db74">&#34;</span>${HOME}<span style="color:#e6db74">\</span>${databaseName}<span style="color:#e6db74">.bak&#34;</span> -NewName <span style="color:#e6db74">&#34;</span>${databaseName}<span style="color:#e6db74">.old.bak&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>Backup-SqlDatabase -ServerInstance $localServer -Database $databaseName -BackupFile <span style="color:#e6db74">&#34;</span>${HOME}<span style="color:#e6db74">\</span>${databaseName}<span style="color:#e6db74">.bak&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ((Test-Path <span style="color:#e6db74">&#34;</span>${HOME}<span style="color:#e6db74">\</span>${databaseName}<span style="color:#e6db74">.bak&#34;</span> -PathType Leaf) <span style="color:#f92672">-and</span> (Test-Path <span style="color:#e6db74">&#34;</span>${HOME}<span style="color:#e6db74">\</span>${databaseName}<span style="color:#e6db74">.old.bak&#34;</span> -PathType Leaf))
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	Remove-Item -Path <span style="color:#e6db74">&#34;</span>${HOME}<span style="color:#e6db74">\</span>${databaseName}<span style="color:#e6db74">.old.bak&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Read backup file to get logical names of .mdf and .ldf</span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Parsing data in </span>${databaseName}<span style="color:#e6db74">.bak...&#34;</span>
+</span></span><span style="display:flex;"><span>$restoreObject = New-Object Microsoft.SqlServer.Management.Smo.Restore
+</span></span><span style="display:flex;"><span>$backupDeviceItem = New-Object Microsoft.SqlServer.Management.Smo.BackupDeviceItem(<span style="color:#e6db74">&#34;</span>${HOME}<span style="color:#e6db74">\</span>${databaseName}<span style="color:#e6db74">.bak&#34;</span>, <span style="color:#e6db74">&#39;File&#39;</span>)
+</span></span><span style="display:flex;"><span>$restoreObject.Devices.Add($backupDeviceItem)
+</span></span><span style="display:flex;"><span>$fileList = $restoreObject.ReadFileList($server)
+</span></span><span style="display:flex;"><span>$mdfLogicalName = $fileList.select(<span style="color:#e6db74">&#34;Type = &#39;D&#39;&#34;</span>)[<span style="color:#ae81ff">0</span>].LogicalName
+</span></span><span style="display:flex;"><span>$ldfLogicalName = $fileList.select(<span style="color:#e6db74">&#34;Type = &#39;L&#39;&#34;</span>)[<span style="color:#ae81ff">0</span>].LogicalName
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set new file locations and restore to new DB</span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Assigning data relocation for </span>${newDatabaseName}<span style="color:#e6db74">...&#34;</span>
+</span></span><span style="display:flex;"><span>$RelocateData = New-Object Microsoft.SqlServer.Management.Smo.RelocateFile(<span style="color:#e6db74">&#34;</span>$mdfLogicalName<span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74">&#34;</span>${HOME}<span style="color:#e6db74">\</span>${newDatabaseName}<span style="color:#e6db74">.mdf&#34;</span>)
+</span></span><span style="display:flex;"><span>$RelocateLog = New-Object Microsoft.SqlServer.Management.Smo.RelocateFile(<span style="color:#e6db74">&#34;</span>$ldfLogicalName<span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74">&#34;</span>${HOME}<span style="color:#e6db74">\</span>${newDatabaseName}<span style="color:#e6db74">_log.ldf&#34;</span>)
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Restoring data to </span>$newDatabaseName<span style="color:#e6db74"> on </span>$localServer<span style="color:#e6db74">...&#34;</span>
+</span></span><span style="display:flex;"><span>Restore-SqlDatabase -ReplaceDatabase -ServerInstance $localServer -Database $newDatabaseName -BackupFile <span style="color:#e6db74">&#34;</span>${HOME}<span style="color:#e6db74">\</span>${databaseName}<span style="color:#e6db74">.bak&#34;</span> -RelocateFile @($RelocateData,$RelocateLog)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Updating connection strings to </span>${newDatabaseName}<span style="color:#e6db74">...&#34;</span>
+</span></span><span style="display:flex;"><span>&amp; $PSScriptRoot\switch-environment.ps1 -Database $newDatabaseName
+</span></span></code></pre></div><h1 id="conn-string-updater">Conn String Updater</h1>
+<p>PowerShell script to change what environment your connection string points to.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">param</span> (
+</span></span><span style="display:flex;"><span>	[<span style="color:#66d9ef">string</span>]$Environment,
+</span></span><span style="display:flex;"><span>	[<span style="color:#66d9ef">string</span>]$Database
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ($Environment.Length <span style="color:#f92672">-gt</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">-and</span> $Environment <span style="color:#f92672">-ne</span> <span style="color:#e6db74">&#34;Development&#34;</span> <span style="color:#f92672">-and</span> $Database.Length <span style="color:#f92672">-gt</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	Write-Host <span style="color:#e6db74">&#34;You can only set a database on the Development environment&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ($Database.Length <span style="color:#f92672">-gt</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	$Environment = <span style="color:#e6db74">&#34;Development&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ($Environment.Length <span style="color:#f92672">-eq</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	Write-Host <span style="color:#e6db74">&#34;0) Development&#34;</span>
+</span></span><span style="display:flex;"><span>	Write-Host <span style="color:#e6db74">&#34;1) Sandbox&#34;</span>
+</span></span><span style="display:flex;"><span>	Write-Host <span style="color:#e6db74">&#34;2) Playground&#34;</span>
+</span></span><span style="display:flex;"><span>	Write-Host <span style="color:#e6db74">&#34;3) Treehouse&#34;</span>
+</span></span><span style="display:flex;"><span>	Write-Host <span style="color:#e6db74">&#34;4) Park&#34;</span>
+</span></span><span style="display:flex;"><span>	Write-Host <span style="color:#e6db74">&#34;5) Alpha&#34;</span>
+</span></span><span style="display:flex;"><span>	Write-Host <span style="color:#e6db74">&#34;6) Beta&#34;</span>
+</span></span><span style="display:flex;"><span>	$selectedEnvironment = Read-Host -Prompt <span style="color:#e6db74">&#34;Select environment [Development]&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">Switch</span> ($selectedEnvironment)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#ae81ff">1</span> { $Environment = <span style="color:#e6db74">&#34;sandbox&#34;</span> }
+</span></span><span style="display:flex;"><span>		<span style="color:#ae81ff">2</span> { $Environment = <span style="color:#e6db74">&#34;playground&#34;</span> }
+</span></span><span style="display:flex;"><span>		<span style="color:#ae81ff">3</span> { $Environment = <span style="color:#e6db74">&#34;treehouse&#34;</span> }
+</span></span><span style="display:flex;"><span>		<span style="color:#ae81ff">4</span> { $Environment = <span style="color:#e6db74">&#34;park&#34;</span> }
+</span></span><span style="display:flex;"><span>		<span style="color:#ae81ff">5</span> { $Environment = <span style="color:#e6db74">&#34;alpha&#34;</span> }
+</span></span><span style="display:flex;"><span>		<span style="color:#ae81ff">6</span> { $Environment = <span style="color:#e6db74">&#34;beta&#34;</span> }
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">Default</span> { $Environment = <span style="color:#e6db74">&#34;Development&#34;</span> }
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> ($Environment <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#34;Development&#34;</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		$Database = Read-Host -Prompt <span style="color:#e6db74">&#34;Enter name of database [App]&#34;</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$appsettings = Get-Content $PSScriptRoot\App.Api\appsettings.local.json -raw | ConvertFrom-Json
+</span></span><span style="display:flex;"><span>$newAppsettings = Get-Content $PSScriptRoot\App.Api\appsettings.$Environment.json -raw | ConvertFrom-Json
+</span></span><span style="display:flex;"><span>$appsettings.ConnectionStrings.AppDbContext = $newAppsettings.ConnectionStrings.AppDbContext
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ($Database.Length <span style="color:#f92672">-gt</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	$appsettings.ConnectionStrings.AppDbContext = $appsettings.ConnectionStrings.AppDbContext.replace(<span style="color:#e6db74">&#34;Initial Catalog=App;&#34;</span>, <span style="color:#e6db74">&#34;Initial Catalog=</span>${Database}<span style="color:#e6db74">;&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$appsettings | ConvertTo-Json -depth <span style="color:#ae81ff">32</span> | Set-Content $PSScriptRoot\App.Api\appsettings.local.json
+</span></span></code></pre></div><div class="edit-meta">
+
+<br><a href="https://github.com/rickdgray/Obsidian/edit/master/Dev%5cDatabase.md" class="edit-page"><i class="fas fa-pen-square"></i>&nbsp;Edit on GitHub</a></div><nav class="pagination"><a class="nav nav-prev" href="https://rickdgray.github.io/notes/dev/choose-a-license/" title="Choose a License"><i class="fas fa-arrow-left" aria-hidden="true"></i>&nbsp;Prev - Choose a License</a>
+<a class="nav nav-next" href="https://rickdgray.github.io/notes/dev/git/" title="Git">Next - Git <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+</nav><footer></footer>
+</main>
+<div class="sidebar">
+
+<nav class="open-menu">
+<ul>
+<li class=""><a href="https://rickdgray.github.io/notes">Home</a></li>
+
+<li class="parent"><a href="https://rickdgray.github.io/notes/dev/">Devs</a>
+  
+<ul class="sub-menu">
+<li class=""><a href="https://rickdgray.github.io/notes/dev/aws/">AWS</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/csharp/">C# Cheatsheet</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/csharp-for-newbies/">C# For Newbies</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/choose-a-license/">Choose a License</a></li>
+<li class="active"><a href="https://rickdgray.github.io/notes/dev/database/">Database</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/git/">Git</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/hard-drive-testing/">HDD Testing</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/interviewing/">Interviewing</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/layoffs/">Layoffs</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/networking/">Networking</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/new-pc/">New PC</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/software-engineering/">Software Engineering</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/ssl-certs/">SSL Certs</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/system-admin/">System Admin</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/terminal/">Terminal</a></li>
+</ul>
+  
+</li>
+</ul>
+</nav>
+
+
+
+<div class="sidebar-footer"></div>
+</div>
+
+</div><a href="#" id="backtothetop-fixed" class="backtothetop"
+ data-backtothetop-duration="600"
+ data-backtothetop-easing="easeOutQuart"
+ data-backtothetop-fixed-fadeIn="1000"
+ data-backtothetop-fixed-fadeOut="1000"
+ data-backtothetop-fixed-bottom="10"
+ data-backtothetop-fixed-right="20">
+<span class="fa-layers fa-fw">
+<i class="fas fa-circle"></i>
+<i class="fas fa-arrow-circle-up"></i>
+</span></a>
+</div>
+</body>
+</html>

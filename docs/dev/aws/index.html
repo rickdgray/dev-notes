@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>AWS - Rick&#39;s Notes</title>
+<meta name="description" content="Dev notes you can use">
+<meta name="generator" content="Hugo 0.111.3">
+<link href="https://rickdgray.github.io/notes/index.xml" rel="alternate" type="application/rss+xml">
+<link rel="canonical" href="https://rickdgray.github.io/notes/dev/aws/">
+<link rel="stylesheet" href="https://rickdgray.github.io/notes/css/theme.min.css">
+<link rel="stylesheet" href="https://rickdgray.github.io/notes/css/chroma.min.css">
+<script defer src="https://rickdgray.github.io/notes/js/fontawesome6/all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha256-4XodgW4TwIJuDtf+v6vDJ39FVxI0veC/kSCCmnFp7ck=" crossorigin="anonymous"></script>
+<script src="https://rickdgray.github.io/notes/js/bundle.js"></script><style>
+:root {}
+</style>
+<meta property="og:title" content="AWS" />
+<meta property="og:description" content="AWS CLI Credential fetching script Improvements to be made:
+Use Write-Output instead as Write-Host cannot be piped to other processes if ((Get-Command -Name aws.exe | measure).Count -eq 0) { Write-Host &#34;AWS CLI not installed.&#34; Write-Host &#34;Download and install from https://awscli.amazonaws.com/AWSCLIV2.msi&#34; exit 1; } # Constants $configFile = &#34;$env:USERPROFILE\.aws\config&#34; $settingsFile = &#34;$env:USERPROFILE\.aws\settings&#34; $startUrl = &#34;https://example.awsapps.com/start#&#34; $AwsMyRoleId = &#34;123456789000&#34; $region = &#34;us-east-1&#34; $format = &#34;json&#34; $roleName = &#34;MyRole&#34; $grantType = &#34;urn:ietf:params:oauth:grant-type:device_code&#34; [datetime]$epoch = &#39;1970-01-01 00:00:00&#39; $profileContent = @&#34; [default] sso_session = sso sso_account_id = $AwsMyRoleId sso_role_name = $roleName region = $region output = $format [sso-session sso] sso_start_url = $startUrl sso_region = $region sso_registration_scopes = sso:account:access &#34;@ # Create the config file # This can also be done manually by running &#34;aws configure sso&#34; if (!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rickdgray.github.io/notes/dev/aws/" /><meta property="og:image" content="https://rickdgray.github.io/notes/images/og-image.png"/><meta property="article:section" content="Dev" />
+
+<meta property="og:site_name" content="Hugo Techdoc Theme" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://rickdgray.github.io/notes/images/og-image.png"/>
+
+<meta name="twitter:title" content="AWS"/>
+<meta name="twitter:description" content="AWS CLI Credential fetching script Improvements to be made:
+Use Write-Output instead as Write-Host cannot be piped to other processes if ((Get-Command -Name aws.exe | measure).Count -eq 0) { Write-Host &#34;AWS CLI not installed.&#34; Write-Host &#34;Download and install from https://awscli.amazonaws.com/AWSCLIV2.msi&#34; exit 1; } # Constants $configFile = &#34;$env:USERPROFILE\.aws\config&#34; $settingsFile = &#34;$env:USERPROFILE\.aws\settings&#34; $startUrl = &#34;https://example.awsapps.com/start#&#34; $AwsMyRoleId = &#34;123456789000&#34; $region = &#34;us-east-1&#34; $format = &#34;json&#34; $roleName = &#34;MyRole&#34; $grantType = &#34;urn:ietf:params:oauth:grant-type:device_code&#34; [datetime]$epoch = &#39;1970-01-01 00:00:00&#39; $profileContent = @&#34; [default] sso_session = sso sso_account_id = $AwsMyRoleId sso_role_name = $roleName region = $region output = $format [sso-session sso] sso_start_url = $startUrl sso_region = $region sso_registration_scopes = sso:account:access &#34;@ # Create the config file # This can also be done manually by running &#34;aws configure sso&#34; if (!"/>
+<meta itemprop="name" content="AWS">
+<meta itemprop="description" content="AWS CLI Credential fetching script Improvements to be made:
+Use Write-Output instead as Write-Host cannot be piped to other processes if ((Get-Command -Name aws.exe | measure).Count -eq 0) { Write-Host &#34;AWS CLI not installed.&#34; Write-Host &#34;Download and install from https://awscli.amazonaws.com/AWSCLIV2.msi&#34; exit 1; } # Constants $configFile = &#34;$env:USERPROFILE\.aws\config&#34; $settingsFile = &#34;$env:USERPROFILE\.aws\settings&#34; $startUrl = &#34;https://example.awsapps.com/start#&#34; $AwsMyRoleId = &#34;123456789000&#34; $region = &#34;us-east-1&#34; $format = &#34;json&#34; $roleName = &#34;MyRole&#34; $grantType = &#34;urn:ietf:params:oauth:grant-type:device_code&#34; [datetime]$epoch = &#39;1970-01-01 00:00:00&#39; $profileContent = @&#34; [default] sso_session = sso sso_account_id = $AwsMyRoleId sso_role_name = $roleName region = $region output = $format [sso-session sso] sso_start_url = $startUrl sso_region = $region sso_registration_scopes = sso:account:access &#34;@ # Create the config file # This can also be done manually by running &#34;aws configure sso&#34; if (!">
+
+<meta itemprop="wordCount" content="642"><meta itemprop="image" content="https://rickdgray.github.io/notes/images/og-image.png"/>
+<meta itemprop="keywords" content="" /></head>
+<body><div class="container"><header>
+<h1>Rick&#39;s Notes</h1><span class="version">Version 0.1</span><a href="https://github.com/rickdgray/Obsidian" class="github"><i class="fab fa-github"></i></a>
+<p class="description">Dev notes you can use</p>
+
+</header>
+
+
+<div class="content-container">
+<main><h1>AWS</h1>
+<h1 id="aws-cli">AWS CLI</h1>
+<p>Credential fetching script
+Improvements to be made:</p>
+<ul>
+<li>Use <code>Write-Output</code> instead as <code>Write-Host</code> cannot be piped to other processes</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ((Get-Command -Name aws.exe | measure).Count <span style="color:#f92672">-eq</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	Write-Host <span style="color:#e6db74">&#34;AWS CLI not installed.&#34;</span>
+</span></span><span style="display:flex;"><span>	Write-Host <span style="color:#e6db74">&#34;Download and install from https://awscli.amazonaws.com/AWSCLIV2.msi&#34;</span>
+</span></span><span style="display:flex;"><span>	exit <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Constants</span>
+</span></span><span style="display:flex;"><span>$configFile = <span style="color:#e6db74">&#34;</span>$env:USERPROFILE<span style="color:#e6db74">\.aws\config&#34;</span>
+</span></span><span style="display:flex;"><span>$settingsFile = <span style="color:#e6db74">&#34;</span>$env:USERPROFILE<span style="color:#e6db74">\.aws\settings&#34;</span>
+</span></span><span style="display:flex;"><span>$startUrl = <span style="color:#e6db74">&#34;https://example.awsapps.com/start#&#34;</span>
+</span></span><span style="display:flex;"><span>$AwsMyRoleId = <span style="color:#e6db74">&#34;123456789000&#34;</span>
+</span></span><span style="display:flex;"><span>$region = <span style="color:#e6db74">&#34;us-east-1&#34;</span>
+</span></span><span style="display:flex;"><span>$format = <span style="color:#e6db74">&#34;json&#34;</span>
+</span></span><span style="display:flex;"><span>$roleName = <span style="color:#e6db74">&#34;MyRole&#34;</span>
+</span></span><span style="display:flex;"><span>$grantType = <span style="color:#e6db74">&#34;urn:ietf:params:oauth:grant-type:device_code&#34;</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#66d9ef">datetime</span>]$epoch = <span style="color:#e6db74">&#39;1970-01-01 00:00:00&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$profileContent = <span style="color:#e6db74">@&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">[default]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">sso_session = sso
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">sso_account_id = </span>$AwsMyRoleId<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">sso_role_name = </span>$roleName<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">region = </span>$region<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">output = </span>$format<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">[sso-session sso]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">sso_start_url = </span>$startUrl<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">sso_region = </span>$region<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">sso_registration_scopes = sso:account:access
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;@</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create the config file</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># This can also be done manually by running &#34;aws configure sso&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (!(Test-Path $configFile -PathType Leaf))
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	$null = New-Item -Path $configFile -Force
+</span></span><span style="display:flex;"><span>	$profileContent | Set-Content $configFile
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># login to AWS SSO</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3 hour session</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># tracking this session expiry is difficult so we will just re-login every time</span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Logging into AWS SSO; allow access on browser...&#34;</span>
+</span></span><span style="display:flex;"><span>$null = aws sso login
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Successfully logged into AWS SSO.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># initialize the settings file</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">If</span> (!(Test-Path $settingsFile))
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	$null = New-Item -Path $settingsFile -Force
+</span></span><span style="display:flex;"><span>	$settings = New-Object -TypeName PSObject
+</span></span><span style="display:flex;"><span>	$settings | Add-Member -MemberType NoteProperty -Name ClientId -Value <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>	$settings | Add-Member -MemberType NoteProperty -Name ClientSecret -Value <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>	$settings | Add-Member -MemberType NoteProperty -Name ClientExpiry -Value $epoch
+</span></span><span style="display:flex;"><span>	$settings | Add-Member -MemberType NoteProperty -Name AccessToken -Value <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>	$settings | Add-Member -MemberType NoteProperty -Name AccessTokenExpiry -Value $epoch
+</span></span><span style="display:flex;"><span>	$settings | ConvertTo-Json -depth <span style="color:#ae81ff">32</span> | Set-Content $settingsFile
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Read the settings file</span>
+</span></span><span style="display:flex;"><span>$settings = Get-Content $settingsFile -Raw | ConvertFrom-Json
+</span></span><span style="display:flex;"><span>$clientId = $settings.ClientId
+</span></span><span style="display:flex;"><span>$clientSecret = $settings.ClientSecret
+</span></span><span style="display:flex;"><span>$clientExpiry = $settings.ClientExpiry
+</span></span><span style="display:flex;"><span>$accessToken = $settings.AccessToken
+</span></span><span style="display:flex;"><span>$accessTokenExpiry = $settings.AccessTokenExpiry
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get your account Id</span>
+</span></span><span style="display:flex;"><span>$accountId = aws sts get-caller-identity --query Account --output text
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> [<span style="color:#66d9ef">bool</span>]$accountId) { Write-Host <span style="color:#e6db74">&#34;Unable to get account Id.&#34;</span> exit <span style="color:#ae81ff">1</span>; }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Register a new client</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3 month expiry</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ($clientExpiry <span style="color:#f92672">-lt</span> (Get-Date))
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	Write-Host <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>	Write-Host <span style="color:#e6db74">&#34;Registering client with AWS.&#34;</span>
+</span></span><span style="display:flex;"><span>	$hostname = hostname
+</span></span><span style="display:flex;"><span>	$client = aws sso-oidc register-client --client-name $hostname --client-type public | ConvertFrom-Json
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> [<span style="color:#66d9ef">bool</span>]$client) { Write-Host <span style="color:#e6db74">&#34;Unable to get register client.&#34;</span> exit <span style="color:#ae81ff">1</span>; }
+</span></span><span style="display:flex;"><span>	$clientId = $client.clientId
+</span></span><span style="display:flex;"><span>	$clientSecret = $client.clientSecret
+</span></span><span style="display:flex;"><span>	$clientExpiry = $epoch.AddSeconds($client.clientSecretExpiresAt)
+</span></span><span style="display:flex;"><span>	Write-Host <span style="color:#e6db74">&#34;Client successfully registered.&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set up the authorization code flow</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 7 hour expiry</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ($accessTokenExpiry <span style="color:#f92672">-lt</span> (Get-Date))
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	Write-Host <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>	Write-Host <span style="color:#e6db74">&#34;Starting device authorization code flow.&#34;</span>
+</span></span><span style="display:flex;"><span>	$device = aws sso-oidc start-device-authorization --client-id $clientId --client-secret $clientSecret --start-url $startUrl | ConvertFrom-Json
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> [<span style="color:#66d9ef">bool</span>]$device) { Write-Host <span style="color:#e6db74">&#34;Unable to get start device authorization.&#34;</span> exit <span style="color:#ae81ff">1</span>; }
+</span></span><span style="display:flex;"><span>	$deviceCode = $device.deviceCode
+</span></span><span style="display:flex;"><span>	start $device.verificationUriComplete
+</span></span><span style="display:flex;"><span>	Write-Host <span style="color:#e6db74">&#34;Before continuing, authorize this device by allowing access on browser...&#34;</span>
+</span></span><span style="display:flex;"><span>	Write-Host <span style="color:#e6db74">&#34;Press [Enter] when completed.&#34;</span>
+</span></span><span style="display:flex;"><span>	$null = [<span style="color:#66d9ef">System.Console</span>]::ReadKey()
+</span></span><span style="display:flex;"><span>	$createdToken = aws sso-oidc create-token --client-id $clientId --client-secret $clientSecret --grant-type $grantType --device-code $deviceCode | ConvertFrom-Json
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> [<span style="color:#66d9ef">bool</span>]$createdToken) { Write-Host <span style="color:#e6db74">&#34;Unable to get create token.&#34;</span> exit <span style="color:#ae81ff">1</span>; }
+</span></span><span style="display:flex;"><span>	$accessToken = $createdToken.accessToken
+</span></span><span style="display:flex;"><span>	$accessTokenExpiry = (Get-Date).AddSeconds($createdToken.expiresIn)
+</span></span><span style="display:flex;"><span>	Write-Host <span style="color:#e6db74">&#34;Successfully set up authorization code flow for this device.&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get the role credentials</span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Generating role credentials.&#34;</span>
+</span></span><span style="display:flex;"><span>$credentials = aws sso get-role-credentials --role-name $roleName --account-id $accountId --access-token $accessToken | ConvertFrom-Json
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> [<span style="color:#66d9ef">bool</span>]$credentials) { Write-Host <span style="color:#e6db74">&#34;Unable to get role credentials.&#34;</span> exit <span style="color:#ae81ff">1</span>; }
+</span></span><span style="display:flex;"><span>$key = $credentials.roleCredentials.accessKeyId
+</span></span><span style="display:flex;"><span>$secret = $credentials.roleCredentials.secretAccessKey
+</span></span><span style="display:flex;"><span>$token = $credentials.roleCredentials.sessionToken
+</span></span><span style="display:flex;"><span>$tokenExpiry = $epoch.AddSeconds($credentials.roleCredentials.expiration / <span style="color:#ae81ff">1000</span>)
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Successfully generated role credentials.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Write credentials to launchsettings.Json</span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Writing credentials to launchsettings.json.&#34;</span>
+</span></span><span style="display:flex;"><span>$launchSettings = Get-Content $PSScriptRoot\DataProcessing.Api\Properties\launchSettings.json -Raw | ConvertFrom-Json
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> [<span style="color:#66d9ef">bool</span>]$launchSettings) { Write-Host <span style="color:#e6db74">&#34;Unable to get launchsettings.json.&#34;</span> exit <span style="color:#ae81ff">1</span>; }
+</span></span><span style="display:flex;"><span>$launchSettings.profiles.<span style="color:#e6db74">&#34;DataProcessingService.Api&#34;</span>.environmentVariables.AWS_ACCESS_KEY_ID = $key
+</span></span><span style="display:flex;"><span>$launchSettings.profiles.<span style="color:#e6db74">&#34;DataProcessingService.Api&#34;</span>.environmentVariables.AWS_SECRET_ACCESS_KEY = $secret
+</span></span><span style="display:flex;"><span>$launchSettings.profiles.<span style="color:#e6db74">&#34;DataProcessingService.Api&#34;</span>.environmentVariables.AWS_SESSION_TOKEN = $token
+</span></span><span style="display:flex;"><span>$launchSettings | ConvertTo-Json -depth <span style="color:#ae81ff">32</span> | Set-Content $PSScriptRoot\DataProcessing.Api\Properties\launchSettings.json
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Successfully wrote credentials to launchsettings.json.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Save the settings file</span>
+</span></span><span style="display:flex;"><span>$settings.ClientId = $clientId
+</span></span><span style="display:flex;"><span>$settings.ClientSecret = $clientSecret
+</span></span><span style="display:flex;"><span>$settings.ClientExpiry = $clientExpiry
+</span></span><span style="display:flex;"><span>$settings.AccessToken = $accessToken
+</span></span><span style="display:flex;"><span>$settings.AccessTokenExpiry = $accessTokenExpiry
+</span></span><span style="display:flex;"><span>$settings | ConvertTo-Json -depth <span style="color:#ae81ff">32</span> | Set-Content $settingsFile
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;Ready! Your session token will expire on </span>$tokenExpiry<span style="color:#e6db74">.&#34;</span>
+</span></span><span style="display:flex;"><span>Write-Host <span style="color:#e6db74">&#34;&#34;</span>
+</span></span></code></pre></div><div class="edit-meta">
+
+<br><a href="https://github.com/rickdgray/Obsidian/edit/master/Dev%5cAWS.md" class="edit-page"><i class="fas fa-pen-square"></i>&nbsp;Edit on GitHub</a></div><nav class="pagination"><a class="nav nav-prev" href="https://rickdgray.github.io/notes/dev/" title="Devs"><i class="fas fa-arrow-left" aria-hidden="true"></i>&nbsp;Prev - Devs</a>
+<a class="nav nav-next" href="https://rickdgray.github.io/notes/dev/csharp/" title="C# Cheatsheet">Next - C# Cheatsheet <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+</nav><footer></footer>
+</main>
+<div class="sidebar">
+
+<nav class="open-menu">
+<ul>
+<li class=""><a href="https://rickdgray.github.io/notes">Home</a></li>
+
+<li class="parent"><a href="https://rickdgray.github.io/notes/dev/">Devs</a>
+  
+<ul class="sub-menu">
+<li class="active"><a href="https://rickdgray.github.io/notes/dev/aws/">AWS</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/csharp/">C# Cheatsheet</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/csharp-for-newbies/">C# For Newbies</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/choose-a-license/">Choose a License</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/database/">Database</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/git/">Git</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/hard-drive-testing/">HDD Testing</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/interviewing/">Interviewing</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/layoffs/">Layoffs</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/networking/">Networking</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/new-pc/">New PC</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/software-engineering/">Software Engineering</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/ssl-certs/">SSL Certs</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/system-admin/">System Admin</a></li>
+<li class=""><a href="https://rickdgray.github.io/notes/dev/terminal/">Terminal</a></li>
+</ul>
+  
+</li>
+</ul>
+</nav>
+
+
+
+<div class="sidebar-footer"></div>
+</div>
+
+</div><a href="#" id="backtothetop-fixed" class="backtothetop"
+ data-backtothetop-duration="600"
+ data-backtothetop-easing="easeOutQuart"
+ data-backtothetop-fixed-fadeIn="1000"
+ data-backtothetop-fixed-fadeOut="1000"
+ data-backtothetop-fixed-bottom="10"
+ data-backtothetop-fixed-right="20">
+<span class="fa-layers fa-fw">
+<i class="fas fa-circle"></i>
+<i class="fas fa-arrow-circle-up"></i>
+</span></a>
+</div>
+</body>
+</html>
