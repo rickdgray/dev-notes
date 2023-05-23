@@ -1,4 +1,4 @@
-baseURL = "https://rickdgray.github.io/notes"
+baseURL = "https://devnotes.rickdgray.com"
 
 languageCode = "en-us"
 DefaultContentLanguage = "en"
@@ -16,12 +16,12 @@ enableMissingTranslationPlaceholders = false
 
     # Source Code repository section
     description = "Dev notes you can use"
-    github_repository = "https://github.com/rickdgray/Obsidian"
-    version = "0.1"
+    github_repository = "https://github.com/rickdgray/notes"
+    version = "0.2"
 
     # Documentation repository section
     # documentation repository (set edit link to documentation repository)
-    github_doc_repository = "https://github.com/rickdgray/Obsidian"
+    github_doc_repository = "https://github.com/rickdgray/notes"
     github_doc_repository_path = ""
 
     # Analytic section
