@@ -1,152 +1,0 @@
-<!DOCTYPE html>
-<html lang="en-us">
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>System Admin - Rick&#39;s Notes</title>
-<meta name="description" content="Dev notes you can use">
-<meta name="generator" content="Hugo 0.111.3">
-<link href="https://rickdgray.github.io/notes/index.xml" rel="alternate" type="application/rss+xml">
-<link rel="canonical" href="https://rickdgray.github.io/notes/dev/system-admin/">
-<link rel="stylesheet" href="https://rickdgray.github.io/notes/css/theme.min.css">
-<link rel="stylesheet" href="https://rickdgray.github.io/notes/css/chroma.min.css">
-<script defer src="https://rickdgray.github.io/notes/js/fontawesome6/all.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha256-4XodgW4TwIJuDtf+v6vDJ39FVxI0veC/kSCCmnFp7ck=" crossorigin="anonymous"></script>
-<script src="https://rickdgray.github.io/notes/js/bundle.js"></script><style>
-:root {}
-</style>
-<meta property="og:title" content="System Admin" />
-<meta property="og:description" content="NGINX Good default for security headers
-# Security headersadd_header Strict-Transport-Security &#34;max-age=31536000; includeSubDomains; preload&#34; always;add_header Content-Security-Policy &#39;frame-ancestors https://mywebapp.mywebsite.example&#39;;add_header X-Content-Type-Options nosniff;add_header Content-Security-Policy &#34;default-src &#39;self&#39; www.google-analytics.com ajax.googleapis.com www.google.com google.com gstatic.com www.gstatic.com connect.facebook.net facebook.com;&#34;;add_header X-XSS-Protection &#34;1; mode=block&#34;;add_header Referrer-Policy &#34;origin&#34;; 413 Request Entity Too Large Allow large uploads; default is only 1MB
-location /uploads {...client_max_body_size 100M;} Set Permissions Recursive sudo chown -R www-data:www-data ./* sudo find ." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://rickdgray.github.io/notes/dev/system-admin/" /><meta property="og:image" content="https://rickdgray.github.io/notes/images/og-image.png"/><meta property="article:section" content="Dev" />
-
-<meta property="og:site_name" content="Hugo Techdoc Theme" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://rickdgray.github.io/notes/images/og-image.png"/>
-
-<meta name="twitter:title" content="System Admin"/>
-<meta name="twitter:description" content="NGINX Good default for security headers
-# Security headersadd_header Strict-Transport-Security &#34;max-age=31536000; includeSubDomains; preload&#34; always;add_header Content-Security-Policy &#39;frame-ancestors https://mywebapp.mywebsite.example&#39;;add_header X-Content-Type-Options nosniff;add_header Content-Security-Policy &#34;default-src &#39;self&#39; www.google-analytics.com ajax.googleapis.com www.google.com google.com gstatic.com www.gstatic.com connect.facebook.net facebook.com;&#34;;add_header X-XSS-Protection &#34;1; mode=block&#34;;add_header Referrer-Policy &#34;origin&#34;; 413 Request Entity Too Large Allow large uploads; default is only 1MB
-location /uploads {...client_max_body_size 100M;} Set Permissions Recursive sudo chown -R www-data:www-data ./* sudo find ."/>
-<meta itemprop="name" content="System Admin">
-<meta itemprop="description" content="NGINX Good default for security headers
-# Security headersadd_header Strict-Transport-Security &#34;max-age=31536000; includeSubDomains; preload&#34; always;add_header Content-Security-Policy &#39;frame-ancestors https://mywebapp.mywebsite.example&#39;;add_header X-Content-Type-Options nosniff;add_header Content-Security-Policy &#34;default-src &#39;self&#39; www.google-analytics.com ajax.googleapis.com www.google.com google.com gstatic.com www.gstatic.com connect.facebook.net facebook.com;&#34;;add_header X-XSS-Protection &#34;1; mode=block&#34;;add_header Referrer-Policy &#34;origin&#34;; 413 Request Entity Too Large Allow large uploads; default is only 1MB
-location /uploads {...client_max_body_size 100M;} Set Permissions Recursive sudo chown -R www-data:www-data ./* sudo find .">
-
-<meta itemprop="wordCount" content="238"><meta itemprop="image" content="https://rickdgray.github.io/notes/images/og-image.png"/>
-<meta itemprop="keywords" content="" /></head>
-<body><div class="container"><header>
-<h1>Rick&#39;s Notes</h1><span class="version">Version 0.1</span><a href="https://github.com/rickdgray/Obsidian" class="github"><i class="fab fa-github"></i></a>
-<p class="description">Dev notes you can use</p>
-
-</header>
-
-
-<div class="content-container">
-<main><h1>System Admin</h1>
-<h1 id="nginx">NGINX</h1>
-<p>Good default for security headers</p>
-<pre tabindex="0"><code># Security headers
-add_header Strict-Transport-Security &#34;max-age=31536000; includeSubDomains; preload&#34; always;
-add_header Content-Security-Policy &#39;frame-ancestors https://mywebapp.mywebsite.example&#39;;
-add_header X-Content-Type-Options nosniff;
-add_header Content-Security-Policy &#34;default-src &#39;self&#39; www.google-analytics.com ajax.googleapis.com www.google.com google.com gstatic.com www.gstatic.com connect.facebook.net facebook.com;&#34;;
-add_header X-XSS-Protection &#34;1; mode=block&#34;;
-add_header Referrer-Policy &#34;origin&#34;;
-</code></pre><p><a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size">413 Request Entity Too Large</a>
-Allow large uploads; default is only 1MB</p>
-<pre tabindex="0"><code>location /uploads {
-    ...
-    client_max_body_size 100M;
-}
-</code></pre><h1 id="set-permissions-recursive">Set Permissions Recursive</h1>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo chown -R www-data:www-data ./*
-</span></span><span style="display:flex;"><span>sudo find . -type d -exec chmod <span style="color:#ae81ff">0755</span> <span style="color:#f92672">{}</span> <span style="color:#ae81ff">\;</span>
-</span></span><span style="display:flex;"><span>sudo find . -type f -exec chmod <span style="color:#ae81ff">0644</span> <span style="color:#f92672">{}</span> <span style="color:#ae81ff">\;</span>
-</span></span><span style="display:flex;"><span>sudo systemctl restart apache2.service
-</span></span></code></pre></div><h1 id="certbot">Certbot</h1>
-<h2 id="plugin">Plugin</h2>
-<p>Does not work with the redirect to github I have in place right now.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo certbot --nginx -d rickdgray.com -d www.rickdgray.com -d dev.rickdgray.com -d coder.rickdgray.com -d guac.rickdgray.com -d jambot.rickdgray.com -d nextcloud.rickdgray.com -d speedtest.rickdgray.com
-</span></span></code></pre></div><h2 id="manual">Manual</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo certbot certonly --manual -d rickdgray.com -d www.rickdgray.com -d dev.rickdgray.com -d coder.rickdgray.com -d guac.rickdgray.com -d jambot.rickdgray.com -d nextcloud.rickdgray.com -d speedtest.rickdgray.com --agree-tos --no-bootstrap --manual-public-ip-logging-ok --preferred-challenges dns-01 --server https://acme-v02.api.letsencrypt.org/directory
-</span></span></code></pre></div><h1 id="ubuntu">Ubuntu</h1>
-<h2 id="disable-cloud-init">Disable cloud-init</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo touch /etc/cloud/cloud-init.disabled
-</span></span></code></pre></div><h2 id="nginx-1">nginx</h2>
-<h3 id="enable-site">Enable site</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo ln -s /etc/nginx/sites-available/www.example.org.conf /etc/nginx/sites-enabled/
-</span></span><span style="display:flex;"><span>sudo systemctl restart nginx.service
-</span></span></code></pre></div><h2 id="open-port">Open port</h2>
-<p>Ubuntu uses &ldquo;uncomplicated fire wall&rdquo; or UFW</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo ufw allow <span style="color:#ae81ff">1701</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># for more granularity</span>
-</span></span><span style="display:flex;"><span>ufw allow 11200:11299/tcp
-</span></span><span style="display:flex;"><span>ufw allow 11200:11299/udp
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># to do a quick test with netcat</span>
-</span></span><span style="display:flex;"><span>nc -l <span style="color:#ae81ff">1701</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># then use telnet from windows and send a message</span>
-</span></span></code></pre></div><h1 id="nfs">NFS</h1>
-<p>To autoconnect client to nfs at startup, append this line to the <code>/etc/fstab</code> file:</p>
-<pre tabindex="0"><code>hostname.com:/mnt/datastore/share/username/folder /mnt/nfs nfs timeo=500,intr,_netdev 0 0
-</code></pre><div class="edit-meta">
-
-<br><a href="https://github.com/rickdgray/Obsidian/edit/master/Dev%5cSystem%20Admin.md" class="edit-page"><i class="fas fa-pen-square"></i>&nbsp;Edit on GitHub</a></div><nav class="pagination"><a class="nav nav-prev" href="https://rickdgray.github.io/notes/dev/ssl-certs/" title="SSL Certs"><i class="fas fa-arrow-left" aria-hidden="true"></i>&nbsp;Prev - SSL Certs</a>
-<a class="nav nav-next" href="https://rickdgray.github.io/notes/dev/terminal/" title="Terminal">Next - Terminal <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-</nav><footer></footer>
-</main>
-<div class="sidebar">
-
-<nav class="open-menu">
-<ul>
-<li class=""><a href="https://rickdgray.github.io/notes">Home</a></li>
-
-<li class="parent"><a href="https://rickdgray.github.io/notes/dev/">Devs</a>
-  
-<ul class="sub-menu">
-<li class=""><a href="https://rickdgray.github.io/notes/dev/aws/">AWS</a></li>
-<li class=""><a href="https://rickdgray.github.io/notes/dev/csharp/">C# Cheatsheet</a></li>
-<li class=""><a href="https://rickdgray.github.io/notes/dev/csharp-for-newbies/">C# For Newbies</a></li>
-<li class=""><a href="https://rickdgray.github.io/notes/dev/choose-a-license/">Choose a License</a></li>
-<li class=""><a href="https://rickdgray.github.io/notes/dev/database/">Database</a></li>
-<li class=""><a href="https://rickdgray.github.io/notes/dev/git/">Git</a></li>
-<li class=""><a href="https://rickdgray.github.io/notes/dev/hard-drive-testing/">HDD Testing</a></li>
-<li class=""><a href="https://rickdgray.github.io/notes/dev/interviewing/">Interviewing</a></li>
-<li class=""><a href="https://rickdgray.github.io/notes/dev/layoffs/">Layoffs</a></li>
-<li class=""><a href="https://rickdgray.github.io/notes/dev/networking/">Networking</a></li>
-<li class=""><a href="https://rickdgray.github.io/notes/dev/new-pc/">New PC</a></li>
-<li class=""><a href="https://rickdgray.github.io/notes/dev/software-engineering/">Software Engineering</a></li>
-<li class=""><a href="https://rickdgray.github.io/notes/dev/ssl-certs/">SSL Certs</a></li>
-<li class="active"><a href="https://rickdgray.github.io/notes/dev/system-admin/">System Admin</a></li>
-<li class=""><a href="https://rickdgray.github.io/notes/dev/terminal/">Terminal</a></li>
-</ul>
-  
-</li>
-</ul>
-</nav>
-
-
-
-<div class="sidebar-footer"></div>
-</div>
-
-</div><a href="#" id="backtothetop-fixed" class="backtothetop"
- data-backtothetop-duration="600"
- data-backtothetop-easing="easeOutQuart"
- data-backtothetop-fixed-fadeIn="1000"
- data-backtothetop-fixed-fadeOut="1000"
- data-backtothetop-fixed-bottom="10"
- data-backtothetop-fixed-right="20">
-<span class="fa-layers fa-fw">
-<i class="fas fa-circle"></i>
-<i class="fas fa-arrow-circle-up"></i>
-</span></a>
-</div>
-</body>
-</html>
