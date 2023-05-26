@@ -1,3 +1,8 @@
+---
+title: Titles
+author: Rick Gray
+year: 2023
+---
 # What to Expect
 Here's the gist of what to expect for each title.
 ## Junior
