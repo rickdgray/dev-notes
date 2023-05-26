@@ -22,6 +22,20 @@ location /uploads {
     client_max_body_size 100M;
 }
 ```
+Reverse proxy to GitHub Pages as your host
+```
+server {
+	location / {
+		proxy_pass              http://taddevries.github.io;
+		proxy_redirect          default;
+		proxy_buffering         off;
+		proxy_set_header        Host                    $host;
+		proxy_set_header        X-Real-IP               $remote_addr;
+		proxy_set_header        X-Forwarded-For         $proxy_add_x_forwarded_for;
+		proxy_set_header        X-Forwarded-Protocol    $scheme;
+	}
+}
+```
 # Set Permissions Recursive
 ```bash
 sudo chown -R www-data:www-data ./*
@@ -33,11 +47,11 @@ sudo systemctl restart apache2.service
 ## Plugin
 Does not work with the redirect to github I have in place right now.
 ```bash
-sudo certbot --nginx -d rickdgray.com -d www.rickdgray.com -d dev.rickdgray.com -d coder.rickdgray.com -d guac.rickdgray.com -d jambot.rickdgray.com -d nextcloud.rickdgray.com -d speedtest.rickdgray.com
+sudo certbot --nginx -d rickdgray.com -d www.rickdgray.com -d dev.rickdgray.com -d guac.rickdgray.com -d jambot.rickdgray.com -d nextcloud.rickdgray.com -d speedtest.rickdgray.com
 ```
 ## Manual
 ```bash
-sudo certbot certonly --manual -d rickdgray.com -d www.rickdgray.com -d dev.rickdgray.com -d coder.rickdgray.com -d guac.rickdgray.com -d jambot.rickdgray.com -d nextcloud.rickdgray.com -d speedtest.rickdgray.com --agree-tos --no-bootstrap --manual-public-ip-logging-ok --preferred-challenges dns-01 --server https://acme-v02.api.letsencrypt.org/directory
+sudo certbot certonly --manual -d rickdgray.com -d www.rickdgray.com -d dev.rickdgray.com -d guac.rickdgray.com -d jambot.rickdgray.com -d nextcloud.rickdgray.com -d speedtest.rickdgray.com --agree-tos --no-bootstrap --manual-public-ip-logging-ok --preferred-challenges dns-01 --server https://acme-v02.api.letsencrypt.org/directory
 ```
 # Ubuntu
 ## Disable cloud-init

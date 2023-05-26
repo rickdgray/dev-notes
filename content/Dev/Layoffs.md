@@ -13,4 +13,4 @@ You're at higher risk for layoff if:
 * You recently joined and haven't had enough time to build a reputation.
 * You are expensive.
 
-If you anticipate layoffs, _try to get laid off_. You want to go in the first round of layoffs; the company has the most money at this point so you will get the best severance they can offer! You don't want to be in the last round of layoffs. You will get no severance pay.
+If you anticipate layoffs, _try to get laid off_. You want to go in the first round of layoffs; the company has the most money at this point so you will get the best severance they can offer! You don't want to be in the last round of layoffs. You will get no severance pay. You can literally just ask your manager directly about the state of layoffs and that you were considering moving on anyway. He can let upper management know and they will be glad to cut expenses without the bad PR that generally comes with it.

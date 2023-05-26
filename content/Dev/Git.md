@@ -3,6 +3,11 @@ title: Git
 author: Rick Gray
 year: 2023
 ---
+# Git
+Pull submodules after clone
+```bash
+git submodule update --init
+```
 # Obsidian Setup
 ```bash
 git config --global --add safe.directory C:/Users/rickd/Source/Repos/Obsidian

@@ -21,10 +21,50 @@ function edit {
 	& "C:/Program Files/Notepad++/notepad++.exe" $Filename
 }
 
-New-Alias which get-command
+# github copilot cli
+function ?? { 
+    $TmpFile = New-TemporaryFile
+    github-copilot-cli what-the-shell ('use powershell to ' + $args) --shellout $TmpFile
+    if ([System.IO.File]::Exists($TmpFile)) { 
+        $TmpFileContents = Get-Content $TmpFile
+            if ($TmpFileContents -ne $nill) {
+            Invoke-Expression $TmpFileContents
+            Remove-Item $TmpFile
+        }
+    }
+}
+ 
+function git? {
+    $TmpFile = New-TemporaryFile
+    github-copilot-cli git-assist $args --shellout $TmpFile
+    if ([System.IO.File]::Exists($TmpFile)) {
+        $TmpFileContents = Get-Content $TmpFile
+            if ($TmpFileContents -ne $nill) {
+            Invoke-Expression $TmpFileContents
+            Remove-Item $TmpFile
+        }
+    }
+}
+
+function gh? {
+    $TmpFile = New-TemporaryFile
+    github-copilot-cli gh-assist $args --shellout $TmpFile
+    if ([System.IO.File]::Exists($TmpFile)) {
+        $TmpFileContents = Get-Content $TmpFile
+            if ($TmpFileContents -ne $nill) {
+            Invoke-Expression $TmpFileContents
+            Remove-Item $TmpFile
+        }
+    }
+}
+
+New-Alias which Get-Command
+New-Alias ll Get-ChildItem
 
 clear
 ```
+## GitHub Copilot CLI
+Install the npm package [here](https://www.npmjs.com/package/@githubnext/github-copilot-cli).  The above functions were pulled from [here](https://www.hanselman.com/blog/github-copilot-for-cli-for-powershell).
 ## Generate theme
 ```powershell
 $alignment = 'left'
