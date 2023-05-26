@@ -2,8 +2,7 @@ baseURL = "https://devnotes.rickdgray.com"
 
 languageCode = "en-us"
 DefaultContentLanguage = "en"
-title = "Rick's Notes"
-theme = "hugo-theme-techdoc"
+title = "Rick's Dev Notes"
 
 hasCJKLanguage = false
 metaDataFormat = "yaml"
