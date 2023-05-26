@@ -2,3 +2,7 @@
 @use "structure";
 @use "component";
 @use "project";
+
+html {
+	scroll-behavior: smooth;
+}
