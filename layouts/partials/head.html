@@ -15,8 +15,8 @@
 <link rel="canonical" href="{{ .Permalink }}">
 <link rel="stylesheet" href="{{"theme.css" | absURL}}">
 {{ partial "meta/chroma.html" . -}}
-<script defer src="fa.js"></script>
-<script defer src="main.js"></script>
+<script defer src="{{ .Site.BaseURL }}/fa.js"></script>
+<script defer src="{{ .Site.BaseURL }}/main.js"></script>
 {{- partial "meta/google-analytics-async.html" . -}}
 {{- partial "meta/tag-manager.html" . -}}
 {{- partial "meta/google-site-verification.html" . -}}

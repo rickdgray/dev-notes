@@ -1,18 +1,4 @@
-// document.querySelectorAll('.has-sub-menu > a span.mark').forEach(e => {
-// 	e.addEventListener('click', (e) => {
-// 		$( this ).parent().siblings( 'ul' ).slideToggle( 'fast', 'swing', function() {
-// 			var text = '';
-// 			if ( $( this ).is(':visible') ) {
-// 				text = '-';
-// 			}
-// 			else {
-// 				text = '+';
-// 			}
-// 			$( this ).siblings('a').children( 'span.mark' ).text( text );
-// 		});
-// 		e.preventDefault();
-// 	});
-// });
+// clickable permalink icons for headers
 const main = document.querySelector('main');
 if (main) {
     document.querySelectorAll('h1, h2, h3, h4, h5, h6')

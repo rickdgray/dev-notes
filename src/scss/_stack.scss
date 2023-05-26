@@ -1,8 +1,5 @@
-@use '../variable';
+@use 'variable';
 
-/*-----------------------*
-		stack
-*-----------------------*/
 :root {
 	--const-stack: #{variable.$default-stack};
 	--stack-top: #{variable.$default-stack};

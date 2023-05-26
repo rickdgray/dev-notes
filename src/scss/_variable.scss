@@ -1,5 +1,15 @@
 @use 'function/calc-stack';
 
+@font-face {
+	font-family: 'montserrat';
+	src: url('../../montserrat.woff2');
+}
+
+@font-face {
+	font-family: 'cascadia';
+	src: url('../../cascadia.woff2');
+}
+
 $default-layout-width: 1024px !default;
 
 $default-base-font-size: 18px !default;
@@ -12,7 +22,7 @@ $default-layout-margin: 0 !default;
 $default-layout-padding: $default-stack !default;
 
 $default-font-color: #000 !default;
-$default-font-family: -apple-system, BlinkMacSystemFont, "游ゴシック体", YuGothic, "メイリオ", Meiryo, "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$default-font-family: montserrat, sans-serif !default;
 
 // color
 $default-background-color: #fafafa !default;
@@ -30,7 +40,7 @@ $code-font-size: .95rem !default;
 $code-block-background-color: #f4f6f8 !default;
 $code-border-color: #f0f0f0 !default;
 $code-inline-background-color: #f0f0f0 !default;
-$code-font-family: Consolas,"Liberation Mono",Menlo,Courier,monospace !default;
+$code-font-family: cascadia, monospace !default;
 
 // breakpoint
 $default-breakpoints: (

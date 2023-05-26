@@ -6,7 +6,7 @@
 
 // Included Modules
 @use 'variable';
-@use 'foundation/stack';
+@use 'stack';
 
 main * {
 	@extend %first-stack;
@@ -40,14 +40,12 @@ figure > figcaption {
 
 .table_of_contents,
 .edit-meta,
-.edit-page,
 .pagination,
 .highlight,
 .powered,
 .panel,
 .button,
-.gist,
-.twitter-tweet {
+.gist {
 	@extend %stack;
 }
 
@@ -97,7 +95,7 @@ figure > figcaption {
 	--panel-background-color: #4ba0e1;
 	--custom-link-text-color: #fff;
 	--custom-link-text-hover-color: #fff;
-	
+
 }
 .panel-success {
 	--panel-font-color: #fff;
@@ -195,10 +193,6 @@ figure > figcaption {
 	background: variable.$sidebar-active-color;
 }
 
-.backtothetop {
-	display: none;
-	font-size: 200%;
-}
 .fa-layers .fa-circle {
 	color: #fff;
 }
@@ -298,20 +292,7 @@ figure > figcaption h4 {
 		font-size: 80%;
 		color: #666;
 	}
-	.copy-btn {
-		margin-left: auto;
 
-		cursor: pointer;
-		position: relative;
-
-		font-size: 80%;
-		border: solid 1px #ccc;
-		padding: .2rem .6rem;
-		border-radius: .3rem;
-		line-height: 1;
-		margin-bottom: .2rem;
-		outline: none;
-	}
 	.code-content {
 		@include flexbox-grid-mixins.grid-col($col: 12, $flex-shrink: 0, $max-width: 100%);
 
@@ -319,23 +300,4 @@ figure > figcaption h4 {
 			@extend %none-stack;
 		}
 	}
-}
-
-.tooltipped::after {
-	content: 'Copied!';
-	background: #555;
-	display: inline-block;
-	color: #fff;
-	border-radius: .4rem;
-	position: absolute;
-	left: 50%;
-	top: -1.8rem;
-	transform: translate(-50%, 0);
-	font-size: .75rem;
-	padding: 4px 10px 6px 10px;
-	animation: fade-tooltip .5s 1s 1 forwards;
-}
-
-@keyframes fade-tooltip {
-  to { opacity: 0; }
 }

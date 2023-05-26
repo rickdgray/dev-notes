@@ -18,11 +18,6 @@ enableMissingTranslationPlaceholders = false
     github_repository = "https://github.com/rickdgray/notes"
     version = "0.2"
 
-    # Documentation repository section
-    # documentation repository (set edit link to documentation repository)
-    github_doc_repository = "https://github.com/rickdgray/notes"
-    github_doc_repository_path = ""
-
     # Analytic section
     google_analytics_id = "" # Your Google Analytics tracking id
     tag_manager_container_id = "" # Your Google Tag Manager container id
