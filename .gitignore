@@ -1,5 +1,5 @@
 public/
 resources/
+static/
+src/node_modules/
 .hugo_build.lock
-notes/.obsidian/workspace.json
-notes/.trash/
