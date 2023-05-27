@@ -22,16 +22,6 @@ enableMissingTranslationPlaceholders = false
 
   dateformat = "" # default "2 Jan 2006"
 
-  # path name excluded from documentation menu
-  menu_exclusion = [
-      "archives",
-      "archive",
-      "blog",
-      "entry",
-      "post",
-      "posts",
-  ]
-
 [markup]
   defaultMarkdownHandler = "goldmark"
   [markup.goldmark.renderer]
