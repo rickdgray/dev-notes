@@ -2,14 +2,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 {{- if eq .Title "" }}
-<title>{{ .Site.Title }}</title>
+  <title>{{ .Site.Title }}</title>
 {{- else }}
-<title>{{ .Title }} - {{ .Site.Title }}</title>
+  <title>{{ .Title }} - {{ .Site.Title }}</title>
 {{- end }}
 {{- if ne .Description "" }}
-<meta name="description" content="{{ .Description }}">
+  <meta name="description" content="{{ .Description }}">
 {{- else if isset .Site.Params "description" }}
-<meta name="description" content="{{ .Site.Params.description }}">
+  <meta name="description" content="{{ .Site.Params.description }}">
 {{- end }}
 {{ hugo.Generator }}
 <link rel="canonical" href="{{ .Permalink }}">
