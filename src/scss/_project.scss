@@ -181,26 +181,6 @@ main {
 		background: variable.$sidebar-active-color;
 		border-left: solid 4px #ccc;
 	}
-
-	.slide-menu {
-		.has-sub-menu:not(.parent) ul {
-			display: none;
-		}
-
-		.has-sub-menu > a span.mark {
-			position: absolute;
-			top: 0;
-			right: 0;
-			display: inline-block;
-			height: 32px;
-			width: 32px;
-			line-height: 2;
-			text-align: center;
-			color: #979797;
-			background: #f2f2f2;
-			border-left: 1px solid #e7e7e7;
-		}
-	}
 }
 
 .sidebar-footer {

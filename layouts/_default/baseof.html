@@ -1,25 +1,19 @@
 <!DOCTYPE html>
-{{ with .Site.LanguageCode }}<html lang="{{ . }}">{{ else }}<html>{{ end }}
-<head>
-{{- partial "head.html" . -}}
-{{- partial "custom-head.html" . -}}
-</head>
-<body>
-{{- partial "prepend-body.html" . -}}
-<div class="container">
-{{- partial "notification.html" . -}}
-{{- partial "site-header.html" . -}}
-{{- partial "global-menu.html" . -}}
-<div class="content-container">
-<main>
-{{- block "main" . -}}{{- end -}}
-<footer>
-{{- partial "content-footer.html" . -}}
-</footer>
-</main>
+  {{ with .Site.LanguageCode }}<html lang="{{ . }}">{{ else }}<html>{{ end }}
+  <head>
+    {{- partial "head.html" . -}}
+  </head>
+  <body>
+    <div class="container">
+      {{- partial "site-header.html" . -}}
+      {{- partial "global-menu.html" . -}}
+      <div class="content-container">
+        <main>
+          {{- block "main" . -}}{{- end -}}
+        </main>
 
-{{- partial "sidebar.html" . -}}
-</div>
-</div>
-</body>
+        {{- partial "sidebar.html" . -}}
+      </div>
+    </div>
+  </body>
 </html>
