@@ -1,9 +1,7 @@
 ---
 title: Titles
 author: Rick Gray
-date: 2017-10-19T15:26:15Z
-lastmod: 2019-10-26T15:26:15Z
-publishdate: 2018-11-23T15:26:15Z
+year: 2023
 ---
 # What to Expect
 Here's the gist of what to expect for each title.

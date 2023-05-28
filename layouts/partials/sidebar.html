@@ -4,12 +4,10 @@
     <li class="{{ if .IsHome }}active{{ end }}">
       <a href="{{ .Site.BaseURL }}">Home</a>
     </li>
-    {{ range (where .Site.Pages "Section" "dev")}}
-      {{ range .Pages.ByTitle }}
-        <li class="{{ if eq .File.UniqueID $currentNode.File.UniqueID }}active{{ end }}">
-          <a href="{{ .Permalink }}">{{ .Title }}</a>
-        </li>
-      {{ end }}
+    {{ range (where .Site.RegularPages.ByTitle "Section" "")}}
+      <li class="{{ if eq .File.UniqueID $currentNode.File.UniqueID }}active{{ end }}">
+        <a href="{{ .Permalink }}">{{ .Title }}</a>
+      </li>
     {{ end }}
   </ul>
 </nav>
