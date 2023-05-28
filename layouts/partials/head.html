@@ -14,7 +14,7 @@
 {{ hugo.Generator }}
 <link rel="canonical" href="{{ .Permalink }}">
 <link rel="stylesheet" href="{{"theme.css" | absURL}}">
-{{ partial "meta/chroma.html" . -}}
+<link rel="stylesheet" href="{{"chroma.css" | absURL}}">
 <script defer src="{{ .Site.BaseURL }}/fa.js"></script>
 <script defer src="{{ .Site.BaseURL }}/main.js"></script>
 {{- partial "meta/google-analytics-async.html" . -}}
