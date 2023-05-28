@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-  {{ with .Site.LanguageCode }}<html lang="{{ . }}">{{ else }}<html>{{ end }}
+  {{ with .Site.LanguageCode }}
+    <html lang="{{ . }}">
+      {{ else }}
+    <html>
+  {{ end }}
   <head>
     {{- partial "head.html" . -}}
   </head>
@@ -7,11 +11,11 @@
     <div class="container">
       {{- partial "site-header.html" . -}}
       <div class="content-container">
+        {{- partial "sidebar.html" . -}}
+
         <main>
           {{- block "main" . -}}{{- end -}}
         </main>
-
-        {{- partial "sidebar.html" . -}}
       </div>
     </div>
   </body>

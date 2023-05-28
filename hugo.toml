@@ -14,7 +14,7 @@ enableMissingTranslationPlaceholders = false
 [params]
   description = "Dev notes you can use"
   github_repository = "https://github.com/rickdgray/notes"
-  version = "0.3"
+  version = "0.3.1"
 
   # Analytic section
   google_analytics_id = "" # Your Google Analytics tracking id

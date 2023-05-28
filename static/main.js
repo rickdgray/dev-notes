@@ -1,7 +1,7 @@
 // clickable permalink icons for headers
 const main = document.querySelector('main');
 if (main) {
-    document.querySelectorAll('h1, h2, h3, h4, h5, h6')
+    document.querySelectorAll('h2, h3, h4, h5, h6')
         .forEach((element) => {
         if (element.id) {
             const headerlink = document.createElement('a');
