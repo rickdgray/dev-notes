@@ -1,7 +1,9 @@
 @use 'variable';
 @use "structure";
 @use "component";
-@use "project";
+
+@use 'sass:map';
+@use '../node_modules/flexbox-grid-mixins/dart-sass/flexbox-grid-mixins';
 
 @font-face {
 	font-family: 'montserrat';
@@ -14,9 +16,13 @@
 }
 
 :root {
-	--background-color: #000000;
-	--primary-color: #ffffff;
-	--secondary-color: #ffffff;
+	--background-color-darker: #181818;
+	--background-color: #1e1e1e;
+	--background-color-lighter: #2e2e2e;
+	--border-color: rgba(255, 255, 255, 0.1);
+	--primary-color: #dadada;
+	--primary-color-lighter: #f4f4f4;
+	--accent-color: hsl(254, 80%, 68%);
 }
 
 * {
@@ -32,6 +38,8 @@ html, body {
 	height: 100%;
 	margin: 0;
 	font-family: montserrat, sans-serif;
+	color: var(--primary-color);
+	background: var(--background-color);
 	display: flex;
 	flex-direction: column;
 }
@@ -52,10 +60,9 @@ a {
 }
 
 blockquote {
-	color: #999;
 	padding: variable.$default-layout-padding;
-	background-color: #f4f4f4;
-	border-left: 4px solid variable.$default-border-color;
+	background-color: var(--background-color-darker);
+	border-left: 4px solid var(--border-color);
 	border-radius: .2rem;
 }
 
@@ -71,15 +78,14 @@ kbd {
 	border-radius: .2rem;
 }
 code {
-	background-color: #f4f4f4;
+	background-color: var(--background-color-lighter);
 }
 kbd {
-	color: #fff;
-	background-color: #333;
+	background-color: var(--background-color-darker);
 }
 
 pre {
-	background-color: #f4f4f4;
+	background-color: var(--background-color-darker);
 	padding: variable.$default-layout-padding;
 	overflow: auto;
 	white-space: pre-wrap;
@@ -121,20 +127,20 @@ video {
 
 table {
 	border-collapse: collapse;
-	border: 1px solid variable.$default-border-color;
+	border: 1px solid var(--border-color);
 	width: 100%;
 }
 th,
 td {
-	border-top: 1px solid variable.$default-border-color;
-	border-right: 1px solid variable.$default-border-color;
+	border-top: 1px solid var(--border-color);
+	border-right: 1px solid var(--border-color);
 	tr:nth-child(even) & {
-		background: #f8f8f8;
+		background: var(--background-color-darker);
 	}
 	padding: .6rem;
 }
 th {
-	background: #eee;
+	background: var(--background-color-darker);
 	font-weight: bold;
 	text-align: left;
 }
@@ -165,8 +171,98 @@ dd {
 	margin-left: 2rem;
 }
 
+// Specifics
+
+header {
+	display: flex;
+	background: var(--background-color-darker);
+	border-bottom: 1px solid var(--border-color);
+	padding: .5rem variable.$default-layout-padding;
+	padding-bottom: 0.8rem;
+
+	h1 {
+		font-size: 140%;
+		display: inline-block;
+	}
+
+	.version {
+		margin-left: 1rem;
+		font-size: 80%;
+	}
+
+	.github-container {
+		margin-left: auto;
+		display: flex;
+		align-items: center;
+
+		.github {
+			color: currentColor;
+			font-size: 180%;
+		}
+	}
+}
+
+main {
+	padding-left: 2.8rem;
+	padding-right: 2.8rem;
+	padding-top: 1.5rem;
+	padding-bottom: 1.5rem;
+}
+
+@media screen and (max-width: #{map.get(variable.$default-breakpoints, xs )} ) {
+	main {
+		padding: 1rem;
+	}
+}
+
+.sidebar {
+	line-height: 1.8;
+	border-right: 1px solid var(--border-color);
+
+	ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	a {
+		position: relative;
+		display: block;
+		color: var(--primary-color);
+		// border-left: 1px solid var(--primary-color);
+		padding: .2rem 1rem;
+
+		&:hover {
+			color: var(--primary-color-lighter);
+			// border-left: 1px solid var(--primary-color-lighter);
+		}
+	}
+
+	nav > ul > li li a {
+		padding-left: 1rem + 1rem * 1;
+	}
+	nav > ul ul > li li a {
+		padding-left: 1rem + 1rem * 2;
+	}
+	nav > ul ul ul > li li a {
+		padding-left: 1rem + 1rem * 3;
+	}
+	nav > ul ul ul ul > li li a {
+		padding-left: 1rem + 1rem * 4;
+	}
+	nav > ul ul ul ul ul > li li a {
+		padding-left: 1rem + 1rem * 5;
+	}
+
+	.active > a {
+		color: var(--accent-color);
+		background-color: var(--background-color-lighter);
+		// border-left: 1px solid var(--accent-color);
+	}
+}
+
 .last-updated {
 	position: absolute;
 	top: 6.8rem;
-	right: 1rem;
+	right: 1.5rem;
 }

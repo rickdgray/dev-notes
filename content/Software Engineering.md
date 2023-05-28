@@ -1,6 +1,6 @@
 ---
 title: Software Engineering
-lastmod: 2023-05-27T21:56:15-05:00
+lastmod: 2023-05-28T00:02:30-05:00
 ---
 # Software Engineering
 ## The Mythical Man-Month
@@ -39,8 +39,7 @@ There are two techniques for lowering software development costs that Brooks wri
 - Implementers may be hired only after the architecture of the system has been completed (a step that may take several months, during which time prematurely hired implementers may have nothing to do).
 - Another technique Brooks mentions is not to develop software at all, but simply to buy it "off the shelf when possible.
 ## Object Oriented Programming
->[!Inheritance Sucks]
->Composition is better than inheritance
+Inheritance Sucks; composition is better.
 <iframe src="https://www.youtube.com/embed/QM1iUe6IofM"></iframe>
 
 ## Backend for Frontend (BFF)

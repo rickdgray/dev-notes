@@ -1,7 +1,7 @@
 ---
 title: CSharp
 friendlyTitle: C#
-lastmod: 2023-05-27T22:13:29-05:00
+lastmod: 2023-05-28T00:01:35-05:00
 ---
 # C#
 I'm tired of having to look up simple things that I can't immediately remember.
@@ -70,11 +70,15 @@ DateTimeFormatInfo.CurrentInfo.GetMonthName(DateTime.Now.Month);
 // Day of week enum
 System.DayOfWeek.Monday
 ```
->[!Leap year bug]
->This will throw an exception when a leap day comes around!
->`var nextYear = new DateTime(current.Year + 1, current.Month, current.Day);`
->Be sure to instead use the built in method.
->`var nextYear = current.AddYears(1);`
+### Leap year bug
+This will throw an exception when a leap day comes around!
+```csharp
+var nextYear = new DateTime(current.Year + 1, current.Month, current.Day);
+```
+Be sure to instead use the built in method.
+```csharp
+var nextYear = current.AddYears(1);
+```
 ## Time Zone
 ```csharp
 // TBD? Probably just use nodatime

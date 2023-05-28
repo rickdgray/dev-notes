@@ -12,8 +12,7 @@ git submodule update --init
 ```bash
 git config --global --add safe.directory C:/Users/rickd/Source/Repos/Obsidian
 ```
->[!Windows-style backslashes will not work]
->If you run the above command by pasting the windows directory, you will need to edit the global .gitconfig file. It is in the user's home directory. You can quickly open it with `git config --global -e` to fix the slashes.
+Windows-style backslashes will not work. If you run the above command by pasting the windows directory, you will need to edit the global `.gitconfig` file. It is in the user's home directory. You can quickly open it with `git config --global -e` to fix the slashes.
 ## Force GPG Login
 ```bash
 echo "test" | gpg --clearsign
