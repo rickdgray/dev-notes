@@ -20,8 +20,6 @@ enableMissingTranslationPlaceholders = false
   google_analytics_id = "" # Your Google Analytics tracking id
   google_site_verification = "" # Your Google Site Verification for Search Console
 
-  dateformat = "" # default "2 Jan 2006"
-
 [markup]
   defaultMarkdownHandler = "goldmark"
   [markup.goldmark.renderer]
