@@ -1,7 +1,6 @@
 ---
 title: October
-author: Rick Gray
-year: 2023
+lastmod: 2023-05-27T22:13:02-05:00
 ---
 # October is the best month
 * leif erikson day

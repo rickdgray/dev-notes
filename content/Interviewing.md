@@ -1,9 +1,9 @@
 ---
 title: Interviewing
-author: Rick Gray
-year: 2023
+lastmod: 2023-05-27T21:58:28-05:00
 ---
-# Questions for the Interviewer
+# Interviewing
+## Questions for the Interviewer
 1) **How do you feel the company rewards achievement?**
 This is my favorite question because it seems to produce a different reaction every time, sometimes with them squirming uncomfortably.
    - Some interviewers will give a generic bullshit answer: there are no rewards. This is OK at best, but if everything else is good including salary, I'll move forward.

@@ -1,10 +1,11 @@
 ---
-title: C# Cheatsheet
-author: Rick Gray
-year: 2023
+title: CSharp
+friendlyTitle: C#
+lastmod: 2023-05-27T22:13:29-05:00
 ---
+# C#
 I'm tired of having to look up simple things that I can't immediately remember.
-# Configuration
+## Configuration
 Given this example `appsettings.json`
 ```json
 {
@@ -14,13 +15,13 @@ Given this example `appsettings.json`
 	}
 }
 ```
-## Access in Program/Startup
+### Access in Program/Startup
 Accessing configuration info in builder
 ```csharp
 var test = builder.Configuration["Position:Title"];
 Console.Writeline(test);
 ```
-## IOptions Pattern
+### IOptions Pattern
 Matching class
 ```csharp
 public class PositionOptions
@@ -45,7 +46,7 @@ public MyController(IOptions<PositionOptions> positionOptions)
 	_positionOptions = positionOptions.Value;
 }
 ```
-# Date and Time
+## Date and Time
 ```csharp
 // Declare specific date and time
 var d = new DateTime(2023, 2, 8, 10, 00, 00).AddDays(120);
@@ -74,12 +75,12 @@ System.DayOfWeek.Monday
 >`var nextYear = new DateTime(current.Year + 1, current.Month, current.Day);`
 >Be sure to instead use the built in method.
 >`var nextYear = current.AddYears(1);`
-# Time Zone
+## Time Zone
 ```csharp
 // TBD? Probably just use nodatime
 ```
-# File I/O
-## Read Entire File
+## File I/O
+### Read Entire File
 ```csharp
 var path = @"c:\temp\MyTest.txt";
 if (!File.Exists(path))
@@ -89,7 +90,7 @@ if (!File.Exists(path))
 	File.ReadAllLines(path);
 }
 ```
-## Read by Line
+### Read by Line
 ```csharp
 var workingDirectory = new DirectoryInfo(Directory.GetCurrentDirectory());
 var path = Path.Combine(
@@ -106,7 +107,7 @@ while ((line = streamReader.ReadLine()) != null)
     data.Add(line);
 }
 ```
-# XML Parsing
+## XML Parsing
 ```csharp
 using System.Xml;
 using System.Xml.Linq;
@@ -133,34 +134,34 @@ while (reader.Read())
 	}
 }
 ```
-# LINQ
+## LINQ
 ```csharp
 // TBD
 ```
-# String Literal Variants
-## Composite
+## String Literal Variants
+### Composite
 This is the old way and should only be used for logging. [Alignment](https://learn.microsoft.com/en-us/dotnet/standard/base-types/composite-formatting#alignment-component) of tabular data is also possible.
 ```csharp
 string.Format("The time is {0}", DateTime.Now)
 ```
-## Interpolation
+### Interpolation
 The preferred way mostly. [Alignment](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/tokens/interpolated#structure-of-an-interpolated-string) also possible.
 ```csharp
 $"The time is {DateTime.Now}"
 ```
-## Verbatim
+### Verbatim
 For when your string will require many escaped characters. Allows for multiline strings. You still have to escape double quotes, however.
 ```csharp
 @"c:\documents\files\u0066.txt"
 @"He said, ""This is the last \u0063hance\x0021"""
 ```
-## Verbatim Interpolated
+### Verbatim Interpolated
 To interpolate your verbatim string. Can use both `@$` or `$@` to indicate.
 ```csharp
 $@"The time is
     {DateTime.Now}"
 ```
-## Raw
+### Raw
 Even easier multiline strings. No escaped characters and includes whitespace and new lines. New lines at the beginning and end are trimmed, however.
 ```csharp
 """
@@ -168,18 +169,18 @@ This is a multi-line
     string literal with the second line indented.
 """
 ```
-## Raw Interpolated
+### Raw Interpolated
 To interpolate your raw string. Also allows printing braces with interpolation.
 ```csharp
 $"""The point "{X}, {Y}" is {Math.Sqrt(X * X + Y * Y)} from the origin"""
 $$"""The point {{{X}}, {{Y}}} is {{Math.Sqrt(X * X + Y * Y)}} from the origin"""
 ```
-## UTF-8
+### UTF-8
 .NET strings are UTF-16 by default, but UTF-8 is the standard for web. They are not compile time and cannot be interpolated.
 ```csharp
 "AUTH "u8
 ```
-# Exceptions
+## Exceptions
 Never throw caught exceptions!
 ```csharp
 try
@@ -213,7 +214,7 @@ Furthermore, if you have nothing add, just don't catch the exception.
 
 This will provide the most information and context to exactly what went wrong and allow you to handle the exception with the best judgement.
 
-# Signatures
+## Signatures
 Parameters should be as as generic as possible, and return types should be as specific as possible.
 Don't do this:
 ```csharp
@@ -224,7 +225,7 @@ Do this:
 public List<int> Calculate(IEnumerable<int> nums) { ... }
 ```
 TODO: explain
-# Access Modifiers
+## Access Modifiers
 An [assembly](https://learn.microsoft.com/en-us/dotnet/standard/glossary#assembly) is a _.dll_ or _.exe_ created by compiling one or more _.cs_ files in a single compilation. In short, another project.
 
 | Caller's location                      | `public` | `protected internal` | `protected` | `internal` | `private protected` | `private` |
@@ -238,8 +239,8 @@ An [assembly](https://learn.microsoft.com/en-us/dotnet/standard/glossary#assemb
 * Classes can only be `public` or `internal`.
 * Structs don't support inheritance, so they and their members cannot be marked `protected`.
 * Members are not greater in accessibility than their class unless overriding virtual methods in a public base class.
-# Autoprops
-## Mutable
+## Autoprops
+### Mutable
 Old school:
 ```csharp
 class Point
@@ -267,7 +268,7 @@ class Point
     public int Y { get; set; }
 }
 ```
-## Immutable
+### Immutable
 Old school:
 ```csharp
 class Point

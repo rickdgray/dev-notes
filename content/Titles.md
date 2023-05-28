@@ -1,28 +1,28 @@
 ---
 title: Titles
-author: Rick Gray
-year: 2023
+lastmod: 2023-05-27T21:54:17-05:00
 ---
-# What to Expect
+# Titles
+## What to Expect
 Here's the gist of what to expect for each title.
-## Junior
+### Junior
 * Makes _no_ impact.
 * "I need help."
 * No experience.
-## Midlevel
+### Midlevel
 * Makes _product_ impact.
 * "I don't need help."
 * Few years of experience.
-## Senior
+### Senior
 * Makes _team_ impact.
 * "How can I help?"
 * 5-10 years of experience.
-## Staff
+### Staff
 * Makes _org_ impact.
 * "Go help."
 * 10-20 years of experience.
-# Detailed Requirements
-## Staff Software Engineer (L6)
+## Detailed Requirements
+### Staff Software Engineer (L6)
 * Typically having strategic impact over some combination of a large work group, a very technically challenging problem, and/or a long time horizon
 * L6 influences velocity of team, mentorship, 10-30 engineers
 * Solving large scale projects that involve the leadership in company
@@ -35,7 +35,7 @@ Here's the gist of what to expect for each title.
 * Broader leadership across multiple teams
 * Technical Expertise: In design/code reviews, may suggest radically different options informed by and impacting other areas.
 
-## Senior Software Engineer (L5)
+### Senior Software Engineer (L5)
 * Technical direction for small number of engineers (0-5+)
 * Leads design and provides constant day-to-day mentorship on technical direction for team
 * Complexity: 1-2 quarter projects; mitigates against single risks at a time (e.g., capacity)

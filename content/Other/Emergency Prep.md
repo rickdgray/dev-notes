@@ -1,3 +1,8 @@
+---
+title: Emergency Prep
+lastmod: 2023-05-27T22:08:48-05:00
+---
+# Emergency Prep
 [This family](https://www.reddit.com/r/personalfinance/comments/43iyip/our_family_of_5_lost_everything_in_a_fire/cziljy3) lost everything in a house fire. Great reference for lessons learned.
 
 [This man](https://www.reddit.com/r/personalfinance/comments/ips9m5/comment/g4m51ei/) has been evacuated 4 times in 7 years and experienced a total loss.

@@ -1,9 +1,9 @@
 ---
 title: Database
-author: Rick Gray
-year: 2023
+lastmod: 2023-05-27T22:00:16-05:00
 ---
-# EF Migrations
+# Database
+## EF Migrations
 The migration tool has to be able to build the DbContext to know what's in it.
 ```bash
 dotnet add package Microsoft.EntityFrameworkCore.Design
@@ -31,7 +31,7 @@ else {
     dotnet ef --startup-project ../App.Api/ database update $TargetMigration
 }
 ```
-# DB Backup
+## DB Backup
 PowerShell script for automating the creation of new databases in a local environment setting.
 ```powershell
 #Requires -RunAsAdministrator
@@ -106,7 +106,7 @@ Restore-SqlDatabase -ReplaceDatabase -ServerInstance $localServer -Database $new
 Write-Host "Updating connection strings to ${newDatabaseName}..."
 & $PSScriptRoot\switch-environment.ps1 -Database $newDatabaseName
 ```
-# Conn String Updater
+## Conn String Updater
 PowerShell script to change what environment your connection string points to.
 ```powershell
 param (

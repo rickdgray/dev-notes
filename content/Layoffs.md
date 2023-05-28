@@ -1,8 +1,8 @@
 ---
 title: Layoffs
-author: Rick Gray
-year: 2023
+lastmod: 2023-05-27T21:58:14-05:00
 ---
+# Layoffs
 People who add value are generally safer than people who manage them. It's always easier to, in the short term, fire managers without affecting the amount of work that gets done too much. Also, upper management postpones laying off the people that are the hardest to rehire as long as possible. An intern is easier to find than a good manager who is easier to find than a good staff level engineer.
 
 You're at higher risk for layoff if:

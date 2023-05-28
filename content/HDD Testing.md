@@ -1,8 +1,8 @@
 ---
 title: HDD Testing
-author: Rick Gray
-year: 2023
+lastmod: 2023-05-27T21:59:19-05:00
 ---
+# HDD Testing
 THIS NEEDS FORMATTING
 
 Introduction

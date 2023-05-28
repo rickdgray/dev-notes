@@ -1,9 +1,9 @@
 ---
 title: Advance Wars
-author: Rick Gray
-year: 2023
+lastmod: 2023-05-27T22:09:40-05:00
 ---
-# Advance Wars Campaign Unlock Flowchart
+# Advance Wars
+## Advance Wars Campaign Unlock Flowchart
 
 <br>
 

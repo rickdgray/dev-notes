@@ -1,8 +1,8 @@
 ---
-title: Choose a License
-author: Rick Gray
-year: 2023
+title: Software Licenses
+lastmod: 2023-05-27T21:55:38-05:00
 ---
+# Software Licenses
 * GPL
 	- My default choice.
 	- All derivatives must also have the same license! Prevents blatant theft of your work.

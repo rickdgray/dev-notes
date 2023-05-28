@@ -1,10 +1,10 @@
 ---
 title: Terminal
-author: Rick Gray
-year: 2023
+lastmod: 2023-05-27T21:54:45-05:00
 ---
-# Windows
-## Microsoft.PowerShell_profile.ps1
+# Terminal
+## Windows
+### Microsoft.PowerShell_profile.ps1
 ```powershell
 Import-Module posh-git
 oh-my-posh init pwsh --config "~/Documents/PowerShell/theme.omp.json" | Invoke-Expression
@@ -63,9 +63,9 @@ New-Alias ll Get-ChildItem
 
 clear
 ```
-## GitHub Copilot CLI
+### GitHub Copilot CLI
 Install the npm package [here](https://www.npmjs.com/package/@githubnext/github-copilot-cli).  The above functions were pulled from [here](https://www.hanselman.com/blog/github-copilot-for-cli-for-powershell).
-## Generate theme
+### Generate theme
 ```powershell
 $alignment = 'left'
 $textColorPrimary = '#ffffff'
@@ -141,4 +141,4 @@ $secondLine = @{
 	'version' = 2
 } | ConvertTo-Json -Depth 5 | Out-File -FilePath .\theme.omp.json
 ```
-# Linux
+## Linux

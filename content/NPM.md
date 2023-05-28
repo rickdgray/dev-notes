@@ -1,9 +1,9 @@
 ---
 title: NPM
-author: Rick Gray
-year: 2023-05-25
+lastmod: 2023-05-27T21:56:53-05:00
 ---
-# Upgrading Legacy Commands
+# NPM
+## Upgrading Legacy Commands
 ```bash
 # find out what's outdated
 npm outdated
