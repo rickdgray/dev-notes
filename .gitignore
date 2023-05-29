@@ -1,5 +1,5 @@
 public/
 resources/
 static/*.map
-src/node_modules/
+node_modules/
 .hugo_build.lock
