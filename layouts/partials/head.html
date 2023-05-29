@@ -19,10 +19,9 @@
 {{ $style := resources.Get "scss/theme.scss" | resources.ToCSS $options | resources.Fingerprint }}
 <link rel="stylesheet" href="{{ $style.Permalink }}" integrity="{{ $style.Data.Integrity }}">
 <script defer src="{{ .Site.BaseURL }}/fa.js"></script>
-<script defer type="module">
+<script type="module">
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
   mermaid.initialize({ startOnLoad: true });
-  console.log('Mermaid initialized');
 </script>
 {{ $opts := dict "targetPath" "js/main.js" "minify" true }}
 {{ $built := resources.Get "ts/main.ts" | js.Build $opts | resources.Fingerprint }}
