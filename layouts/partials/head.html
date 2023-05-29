@@ -19,6 +19,8 @@
 {{ $style := resources.Get "scss/theme.scss" | resources.ToCSS $options | resources.Fingerprint }}
 <link rel="stylesheet" href="{{ $style.Permalink }}" integrity="{{ $style.Data.Integrity }}">
 <script defer src="{{ .Site.BaseURL }}/fa.js"></script>
-<script defer src="{{ .Site.BaseURL }}/main.js"></script>
+{{ $opts := dict "targetPath" "js/main.js" "minify" true }}
+{{ $built := resources.Get "ts/main.ts" | js.Build $opts | resources.Fingerprint }}
+<script defer src="{{ $built.Permalink }}" integrity="{{ $built.Data.Integrity }}"></script>
 {{- partial "meta/google-analytics-async.html" . -}}
 {{- partial "meta/google-site-verification.html" . -}}

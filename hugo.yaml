@@ -1,0 +1,22 @@
+title: "Rick's Dev Notes"
+baseURL: "https://devnotes.rickdgray.com"
+languageCode: "en-us"
+
+enableEmoji: true
+enableGitInfo: true
+enableRobotsTXT: true
+
+params:
+  description: "Dev notes you can use"
+  github_repository: "https://github.com/rickdgray/notes"
+  version: "0.3.2"
+
+  google_analytics_id: "" # Your Google Analytics tracking id
+  google_site_verification: "" # Your Google Site Verification for Search Console
+
+outputs:
+  home:
+  - HTML
+  page:
+  - HTML
+
