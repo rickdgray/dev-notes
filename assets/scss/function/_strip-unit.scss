@@ -1,4 +1,4 @@
-@charset "utf-8";
+@charset 'utf-8';
 
 // Built-In Modules
 @use 'sass:meta';
@@ -12,6 +12,6 @@
 	} @else {
 		@warn $value;
 		@warn meta.type-of($value);
-		@error "error strip unit"
+		@error 'error strip unit'
 	}
 }
