@@ -1,8 +1,6 @@
 {{- define "main" -}}
-  {{ if .Params.Date }}
-    <div class="last-updated">
-      Last updated on {{ .Lastmod.Local.Format ("Mon, 02 Jan 2006 15:04:05 MST") }}
-    </div>
-  {{ end }}
+  <div class="last-updated">
+    Last updated on {{ .Lastmod.Local.Format ("Mon, 02 Jan 2006 15:04 MST") }}
+  </div>
   {{- .Content -}}
 {{- end -}}

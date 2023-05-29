@@ -3,7 +3,6 @@ baseURL: "https://devnotes.rickdgray.com"
 languageCode: "en-us"
 
 enableEmoji: true
-enableGitInfo: true
 enableRobotsTXT: true
 
 params:
