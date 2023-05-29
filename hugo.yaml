@@ -19,4 +19,4 @@ outputs:
   - HTML
   page:
   - HTML
-
+  - PDF
