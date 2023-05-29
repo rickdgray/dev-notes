@@ -14,6 +14,11 @@ params:
   google_analytics_id: "" # Your Google Analytics tracking id
   google_site_verification: "" # Your Google Site Verification for Search Console
 
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
 outputs:
   home:
   - HTML
