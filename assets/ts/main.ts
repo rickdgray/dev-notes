@@ -1,3 +1,6 @@
+import mermaid from 'mermaid';
+mermaid.initialize({ startOnLoad: true });
+
 // clickable permalink icons for headers
 const main = document.querySelector('main');
 if (main) {

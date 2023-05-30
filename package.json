@@ -1,5 +1,6 @@
 {
   "devDependencies": {
-    "flexbox-grid-mixins": "^0.3.4"
+    "flexbox-grid-mixins": "^0.3.4",
+    "mermaid": "^10.2.0"
   }
 }
