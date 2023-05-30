@@ -22,7 +22,8 @@
 	--border-color: rgba(255, 255, 255, 0.1);
 	--primary-color: #dadada;
 	--primary-color-lighter: #f4f4f4;
-	--accent-color: hsl(280, 100%, 65%);
+	--accent-color: hsl(288, 100%, 50%);
+	--tertiary-color: hsl(220, 100%, 50%);
 }
 
 * {
@@ -42,6 +43,27 @@ html, body {
 	background: var(--background-color);
 	display: flex;
 	flex-direction: column;
+}
+
+::-webkit-scrollbar {
+	width: 0.5em;
+	height: 0.5em;
+
+	&-track {
+		background: transparent;
+		margin-block: 0.5em;
+	}
+
+	&-thumb {
+		background: linear-gradient(var(--tertiary-color), var(--accent-color));
+		border-radius: 1em;
+	}
+}
+
+@supports (scrollbar-color: red blue) {
+	* {
+		scrollbar-color: var(--accent-color) transparent;
+	}
 }
 
 h1, h2, h3, h4, h5, h6, p, a, li, ul, ol, div {
@@ -104,7 +126,7 @@ pre {
 	}
 	&.scrollable {
 		max-height: 240px;
-		overflow-y: scroll;
+		overflow-y: auto;
 	}
 }
 
@@ -234,12 +256,12 @@ main {
 		position: relative;
 		display: block;
 		color: var(--primary-color);
-		// border-left: 1px solid var(--primary-color);
+		border-left: 1px solid transparent;
 		padding: .2rem 1rem;
 
 		&:hover {
 			color: var(--primary-color-lighter);
-			// border-left: 1px solid var(--primary-color-lighter);
+			border-left: 1px solid var(--primary-color);
 		}
 	}
 
@@ -262,7 +284,7 @@ main {
 	.active > a {
 		color: var(--accent-color);
 		background-color: var(--background-color-lighter);
-		// border-left: 1px solid var(--accent-color);
+		border-left: 1px solid var(--accent-color);
 	}
 }
 
