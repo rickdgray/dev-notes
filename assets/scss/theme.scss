@@ -22,7 +22,7 @@
 	--border-color: rgba(255, 255, 255, 0.1);
 	--primary-color: #dadada;
 	--primary-color-lighter: #f4f4f4;
-	--accent-color: hsl(254, 80%, 68%);
+	--accent-color: hsl(280, 100%, 65%);
 }
 
 * {
@@ -179,6 +179,11 @@ header {
 	border-bottom: 1px solid var(--border-color);
 	padding: .5rem variable.$default-layout-padding;
 	padding-bottom: 0.8rem;
+
+	.logo {
+		margin-right: 1rem;
+		width: 3.5rem;
+	}
 
 	h1 {
 		font-size: 140%;
