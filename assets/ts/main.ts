@@ -1,5 +1,14 @@
 import mermaid from 'mermaid';
-mermaid.initialize({ startOnLoad: true });
+mermaid.initialize({
+	startOnLoad: false,
+	securityLevel: 'loose',
+	theme: 'dark',
+	themeCSS: '.edgeLabel { background-color: #181818; }'
+});
+
+mermaid.run({
+	querySelector: 'code.language-mermaid'
+})
 
 // clickable permalink icons for headers
 const main = document.querySelector('main');
