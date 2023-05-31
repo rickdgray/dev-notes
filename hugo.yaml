@@ -10,8 +10,8 @@ params:
   github_repository: "https://github.com/rickdgray/notes"
   version: "0.3.2"
 
-  google_analytics_id: "" # Your Google Analytics tracking id
-  google_site_verification: "" # Your Google Site Verification for Search Console
+  google_analytics_id: ""
+  google_site_verification: ""
 
 markup:
   goldmark:
