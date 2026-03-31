@@ -51,7 +51,6 @@ jobs:
           find -name "*.md" -exec cp --parents {} ../content \;
           cd ..
           rm -r content/Templates
-          rm -r content/Work
       - name: Install NPM
         uses: actions/setup-node@v4
         with:
