@@ -5,7 +5,7 @@
       <a href="{{ .Site.BaseURL }}">Home</a>
     </li>
     {{ range (where .Site.RegularPages.ByTitle "Section" "")}}
-      <li class="{{ if eq .File.UniqueID $currentNode.File.UniqueID }}active{{ end }}">
+      <li class="{{ if and $currentNode.File (eq .File.UniqueID $currentNode.File.UniqueID) }}active{{ end }}">
         <a href="{{ .Permalink }}">
           {{ if .Params.FriendlyTitle }}
             {{ .Params.FriendlyTitle }}
