@@ -22,7 +22,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.121.2
+      HUGO_VERSION: 0.161.1
     steps:
       - name: Install Hugo CLI
         run: |
@@ -31,7 +31,7 @@ jobs:
       - name: Install Sass
         run: sudo snap install dart-sass
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           token: ${{ secrets.DEVNOTES_CI_TOKEN }}
           submodules: recursive
@@ -44,7 +44,7 @@ jobs:
           git commit -am "Automerged latest notes" && git push || echo "No changes to notes"
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
       - name: Stage markdown
         run: |
           cd notes
@@ -52,7 +52,7 @@ jobs:
           cd ..
           rm -r content/Templates
       - name: Install NPM
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: "20"
       - name: Install dependencies
@@ -62,7 +62,7 @@ jobs:
         run: |
           hugo
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ./public
 
@@ -75,4 +75,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
